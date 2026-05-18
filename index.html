@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>建築資源循環ラボ | 解体前資源を次の建築へつなぐ</title>
+  <meta name="description" content="建築資源循環ラボは、解体・改修・移転前に発生する建材・什器・設備・余剰材を情報化し、再利用・売却・社内転用・次の建築プロジェクトへの活用を支援する社会実装プロジェクトです。">
+  <meta property="og:title" content="建築資源循環ラボ | 解体される前に、建築資源の未来をつくる">
+  <meta property="og:description" content="解体・改修・移転前の建材・什器・設備を情報化し、次の建築プロジェクトや企業・地域へつなぐ社会実装プロジェクト。">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="建築資源循環ラボ">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { DEFAULT: '#2d6a4f', light: '#40916c', dark: '#1b4332' },
+            accent: { DEFAULT: '#52b788', light: '#95d5b2' },
+            'surface-warm': '#f8faf5',
+            'eco-border': '#b7e4c7',
+            'text-muted': '#4a7c59',
+            'text-light': '#6b9080',
+            background: '#f0f7f0',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .eco-input {
+      border: 1px solid #b7e4c7;
+      border-radius: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      background: white;
+      width: 100%;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .eco-input:focus {
+      border-color: #2d6a4f;
+      box-shadow: 0 0 0 2px rgba(45,106,79,0.1);
+    }
+    .eco-btn {
+      background: linear-gradient(135deg, #2d6a4f, #40916c);
+      color: white;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      padding: 0.75rem 2rem;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .eco-btn:hover { opacity: 0.9; }
+    .eco-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    details summary { cursor: pointer; list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+    details summary::before { content: '+'; display: inline-block; width: 1.5rem; font-weight: bold; color: #2d6a4f; font-size: 1.125rem; }
+    details[open] summary::before { content: '\2212'; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-[#f0f7f0] text-gray-900 antialiased">
+
+  <!-- Header (fixed) -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur border-b border-eco-border">
+    <div class="mx-auto max-w-6xl flex items-center justify-between px-6 py-3">
+      <a href="#" class="flex items-center gap-2">
+        <span class="font-bold text-lg tracking-wide text-primary-dark">建築資源循環ラボ</span>
+      </a>
+      <nav class="hidden md:flex gap-6 text-sm font-medium">
+        <a href="#why" class="text-text-muted hover:text-primary-dark transition-colors">Why</a>
+        <a href="#service" class="text-text-muted hover:text-primary-dark transition-colors">Service</a>
+        <a href="#themes" class="text-text-muted hover:text-primary-dark transition-colors">Themes</a>
+        <a href="#mission" class="text-text-muted hover:text-primary-dark transition-colors">Mission</a>
+        <a href="#message" class="text-text-muted hover:text-primary-dark transition-colors">Message</a>
+        <a href="#contact" class="text-text-muted hover:text-primary-dark transition-colors">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="flex-1 pt-[52px]">
+    <main>
+
+      <!-- Hero -->
+      <section class="relative overflow-hidden bg-gradient-to-br from-primary-dark via-primary to-primary-light text-white">
+        <div class="absolute inset-0 opacity-10">
+          <div class="absolute top-20 left-10 w-72 h-72 border border-white/30 rounded-full"></div>
+          <div class="absolute bottom-10 right-20 w-96 h-96 border border-white/20 rounded-full"></div>
+          <div class="absolute top-40 right-40 w-48 h-48 border border-white/20 rotate-45"></div>
+        </div>
+        <div class="relative mx-auto max-w-4xl px-6 py-28 md:py-40 text-center">
+          <p class="text-xs md:text-sm tracking-widest uppercase text-white/60 mb-4">Circular Building Resources Lab</p>
+          <h1 class="text-4xl md:text-6xl font-bold leading-[1.2] mb-6">建築リユースは、<br>流通の問題だ。</h1>
+          <p class="text-base md:text-lg leading-relaxed max-w-2xl mx-auto text-white/80 mb-4">善意では広がらない。仕組みで動かす。</p>
+          <p class="text-sm md:text-base leading-relaxed max-w-2xl mx-auto text-white/65 mb-12">解体・改修・移転の前に入り、情報を整え、接続をつくり、<br class="hidden md:inline">現場の合理性の中で成立する建築資源循環を設計します。</p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center mb-8">
+            <a href="#contact" onclick="scrollToContact()" class="inline-block rounded-lg bg-white text-primary-dark font-bold px-8 py-4 text-base hover:bg-white/90 transition-colors">まずは相談する（無料）</a>
+            <a href="#contact" onclick="scrollToContact('仲間として参加したい')" class="inline-block rounded-lg border border-white/50 text-white font-semibold px-6 py-4 text-sm hover:bg-white/10 transition-colors">仲間として参加する</a>
+            <a href="#contact" onclick="scrollToContact('実証パートナーになりたい')" class="inline-block rounded-lg border border-white/50 text-white font-semibold px-6 py-4 text-sm hover:bg-white/10 transition-colors">企業・団体として支援する</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- News -->
+      <section class="bg-surface-warm border-b border-eco-border">
+        <div class="mx-auto max-w-4xl px-6 py-8">
+          <p class="text-xs font-semibold tracking-[0.2em] uppercase text-text-light mb-2">News</p>
+          <ul class="space-y-2 mt-3">
+            <li class="flex gap-4 text-sm"><span class="text-text-light shrink-0 font-mono text-xs pt-0.5">2026.05.15</span><span class="text-primary-dark">建築資源循環ラボの準備を開始しました</span></li>
+            <li class="flex gap-4 text-sm"><span class="text-text-light shrink-0 font-mono text-xs pt-0.5">2026.05.15</span><span class="text-primary-dark">初期実証パートナーを募集しています</span></li>
+            <li class="flex gap-4 text-sm"><span class="text-text-light shrink-0 font-mono text-xs pt-0.5">2026.05.15</span><span class="text-primary-dark">建築資源循環を一緒につくる仲間を募集しています</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Why -->
+      <section id="why" class="scroll-mt-16">
+        <div class="mx-auto max-w-5xl px-6 py-20">
+          <div class="text-center mb-14">
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase text-text-light mb-2">Why</p>
+            <h2 class="text-2xl md:text-4xl font-bold text-primary-dark leading-snug">「もったいない」では、広がらない。</h2>
+            <p class="mt-4 text-sm md:text-base text-text-muted max-w-2xl mx-auto leading-relaxed">建築リユースが止まっているのは、価値が理解されていないからではない。<br class="hidden md:inline">価値を次に渡す回路がないから、止まっている。</p>
+          </div>
+          <div class="grid gap-8 md:grid-cols-3">
+            <div class="relative">
+              <span class="text-6xl font-black text-accent/15 absolute -top-4 -left-2">01</span>
+              <div class="relative pt-8">
+                <h3 class="text-lg md:text-xl font-bold text-primary-dark mb-3">流通の問題である</h3>
+                <p class="text-sm text-text-muted leading-relaxed">何が、どこに、どんな状態で、いつ出て、誰に合うのか。情報が分断されているから、取引にならない。善意では解決しない構造の問題。</p>
+              </div>
+            </div>
+            <div class="relative">
+              <span class="text-6xl font-black text-accent/15 absolute -top-4 -left-2">02</span>
+              <div class="relative pt-8">
+                <h3 class="text-lg md:text-xl font-bold text-primary-dark mb-3">失われているのは接続である</h3>
+                <p class="text-sm text-text-muted leading-relaxed">情報の接続、時間の接続、責任の接続。この三つが切れているから、価値があっても次に渡らない。</p>
+              </div>
+            </div>
+            <div class="relative">
+              <span class="text-6xl font-black text-accent/15 absolute -top-4 -left-2">03</span>
+              <div class="relative pt-8">
+                <h3 class="text-lg md:text-xl font-bold text-primary-dark mb-3">現場は合理的である</h3>
+                <p class="text-sm text-text-muted leading-relaxed">現場が動かないのは無関心ではなく合理性。工程を乱さず、責任が明確で、追加判断が少ない。その条件で初めて選択肢に入る。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Service -->
+      <section id="service" class="bg-surface-warm border-t border-eco-border scroll-mt-16">
+        <div class="mx-auto max-w-6xl px-6 py-20">
+          <div class="text-center mb-12">
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase text-text-light mb-2">Service</p>
+            <h2 class="text-2xl md:text-3xl font-bold text-primary-dark leading-snug">接続を整え、流通を設計する。</h2>
+            <p class="mt-3 text-sm text-text-muted max-w-xl mx-auto">善意に頼らず、現場の合理性の中で成立する伴走をします。</p>
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="bg-white border border-eco-border rounded-xl p-6 hover:shadow-md hover:border-accent-light transition-all">
+              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary-light flex items-center justify-center text-white font-bold text-sm mb-4">01</div>
+              <h3 class="font-bold text-primary-dark mb-2">建物リユース相談</h3>
+              <p class="text-sm text-text-muted leading-relaxed">新築・改修・解体・移転・竣工直前、どのフェーズでも対応します。建材・什器・設備について「どうすればいい？」の段階からお気軽にご相談ください。</p>
+            </div>
+            <div class="bg-white border border-eco-border rounded-xl p-6 hover:shadow-md hover:border-accent-light transition-all">
+              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary-light flex items-center justify-center text-white font-bold text-sm mb-4">02</div>
+              <h3 class="font-bold text-primary-dark mb-2">資源調査・棚卸し</h3>
+              <p class="text-sm text-text-muted leading-relaxed">建物に残る建材・什器・設備を現地調査し、再利用・売却・社内転用・寄付の可能性を整理します。</p>
+            </div>
+            <div class="bg-white border border-eco-border rounded-xl p-6 hover:shadow-md hover:border-accent-light transition-all">
+              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary-light flex items-center justify-center text-white font-bold text-sm mb-4">03</div>
+              <h3 class="font-bold text-primary-dark mb-2">活用先・買い手探索</h3>
+              <p class="text-sm text-text-muted leading-relaxed">建築プロジェクト、設計者、施工者、企業、地域など、資源を必要とする候補先との接続可能性を探ります。</p>
+            </div>
+            <div class="bg-white border border-eco-border rounded-xl p-6 hover:shadow-md hover:border-accent-light transition-all">
+              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary-light flex items-center justify-center text-white font-bold text-sm mb-4">04</div>
+              <h3 class="font-bold text-primary-dark mb-2">リユース材の調達支援</h3>
+              <p class="text-sm text-text-muted leading-relaxed">リユース材を使いたい建築プロジェクトに向けて、必要な資材・什器・設備の探索と品質確認を支援します。</p>
+            </div>
+            <div class="bg-white border border-eco-border rounded-xl p-6 hover:shadow-md hover:border-accent-light transition-all">
+              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary-light flex items-center justify-center text-white font-bold text-sm mb-4">05</div>
+              <h3 class="font-bold text-primary-dark mb-2">ESG・廃棄削減の整理</h3>
+              <p class="text-sm text-text-muted leading-relaxed">再利用による廃棄削減効果の試算、社内説明資料の作成支援など、企業・団体の意思決定をサポートします。</p>
+            </div>
+            <div class="bg-white border border-eco-border rounded-xl p-6 hover:shadow-md hover:border-accent-light transition-all">
+              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-primary-light flex items-center justify-center text-white font-bold text-sm mb-4">06</div>
+              <h3 class="font-bold text-primary-dark mb-2">実証プロジェクト伴走</h3>
+              <p class="text-sm text-text-muted leading-relaxed">企業・自治体・大学・団体と連携し、建築資源循環の小さな実証から社会実装まで、プロとして伴走します。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Consulting Themes -->
+      <section id="themes" class="border-t border-eco-border scroll-mt-16">
+        <div class="mx-auto max-w-6xl px-6 py-20">
+          <div class="text-center mb-12">
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase text-text-light mb-2">Consulting Themes</p>
+            <h2 class="text-2xl md:text-4xl font-bold text-primary-dark leading-snug">こんなご相談に対応します</h2>
+            <p class="mt-3 text-sm text-text-muted max-w-xl mx-auto">解体前・改修前に入り、情報と接続を先に整えます。</p>
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div class="bg-white border border-eco-border rounded-xl p-6 hover:shadow-md transition-shadow">
+              <h3 class="font-bold text-primary-dark mb-4 text-lg">解体が決まった建物</h3>
+              <dl class="space-y-3 text-sm">
+                <div><dt class="font-semibold text-text-muted mb-0.5">対象</dt><dd class="text-text-light leading-relaxed">解体予定のビル・施設・工場・店舗</dd></div>
+                <div><dt class="font-semibold text-text-muted mb-0.5">相談できること</dt><dd class="text-text-light leading-relaxed">まだ使える建材・什器・設備の洗い出し、再利用・売却・寄付の選択肢整理</dd></div>
+                <div><dt class="font-semibold text-text-muted mb-0.5">最初の一歩</dt><dd class="text-text-light leading-relaxed">解体時期と建物概要を共有いただければ、すぐに整理を始められます</dd></div>
+              </dl>
+            </div>
+            <div class="bg-white border border-eco-border rounded-xl p-6 hover:shadow-md transition-shadow">
+              <h3 class="font-bold text-primary-dark mb-4 text-lg">改修・移転・閉鎖</h3>
+              <dl class="space-y-3 text-sm">
+                <div><dt class="font-semibold text-text-muted mb-0.5">対象</dt><dd class="text-text-light leading-relaxed">オフィス、商業施設、ホテル、学校、公共施設など</dd></div>
+                <div><dt class="font-semibold text-text-muted mb-0.5">相談できること</dt><dd class="text-text-light leading-relaxed">内装材・照明・家具・設備などの再利用診断、搬出スケジュールとの調整</dd></div>
+                <div><dt class="font-semibold text-text-muted mb-0.5">最初の一歩</dt><dd class="text-text-light leading-relaxed">改修・移転のスケジュールと施設概要を共有ください</dd></div>
+              </dl>
+            </div>
+            <div class="bg-white border border-eco-border rounded-xl p-6 hover:shadow-md transition-shadow">
+              <h3 class="font-bold text-primary-dark mb-4 text-lg">新築プロジェクト</h3>
+              <dl class="space-y-3 text-sm">
+                <div><dt class="font-semibold text-text-muted mb-0.5">対象</dt><dd class="text-text-light leading-relaxed">新築でリユース材の採用を検討している発注者・設計者・施工者</dd></div>
+                <div><dt class="font-semibold text-text-muted mb-0.5">相談できること</dt><dd class="text-text-light leading-relaxed">リユース材の探索、品質・コスト・搬入条件の整理、設計への組み込み支援</dd></div>
+                <div><dt class="font-semibold text-text-muted mb-0.5">最初の一歩</dt><dd class="text-text-light leading-relaxed">使いたい資材の種類・数量・時期を共有いただければ探索を始めます</dd></div>
+              </dl>
+            </div>
+            <div class="bg-white border border-eco-border rounded-xl p-6 hover:shadow-md transition-shadow">
+              <h3 class="font-bold text-primary-dark mb-4 text-lg">竣工直前・引渡し前後</h3>
+              <dl class="space-y-3 text-sm">
+                <div><dt class="font-semibold text-text-muted mb-0.5">対象</dt><dd class="text-text-light leading-relaxed">竣工直前に余った建材、テナント入替で不要になった什器・設備</dd></div>
+                <div><dt class="font-semibold text-text-muted mb-0.5">相談できること</dt><dd class="text-text-light leading-relaxed">余剰材の情報化、短期間での活用先探索、廃棄コスト削減</dd></div>
+                <div><dt class="font-semibold text-text-muted mb-0.5">最初の一歩</dt><dd class="text-text-light leading-relaxed">余剰材のリスト・写真・数量など、分かる範囲から始められます</dd></div>
+              </dl>
+            </div>
+            <div class="bg-white border border-eco-border rounded-xl p-6 hover:shadow-md transition-shadow">
+              <h3 class="font-bold text-primary-dark mb-4 text-lg">余剰建材・メーカー在庫</h3>
+              <dl class="space-y-3 text-sm">
+                <div><dt class="font-semibold text-text-muted mb-0.5">対象</dt><dd class="text-text-light leading-relaxed">建設現場の余剰材、メーカーの余剰在庫・B品</dd></div>
+                <div><dt class="font-semibold text-text-muted mb-0.5">相談できること</dt><dd class="text-text-light leading-relaxed">余剰材の情報化、他プロジェクトでの活用先探索、在庫削減と廃棄コスト低減</dd></div>
+                <div><dt class="font-semibold text-text-muted mb-0.5">最初の一歩</dt><dd class="text-text-light leading-relaxed">余剰材のリスト・写真・数量など、現時点で把握している情報を共有ください</dd></div>
+              </dl>
+            </div>
+            <div class="bg-white border border-eco-border rounded-xl p-6 hover:shadow-md transition-shadow">
+              <h3 class="font-bold text-primary-dark mb-4 text-lg">とにかく相談したい</h3>
+              <dl class="space-y-3 text-sm">
+                <div><dt class="font-semibold text-text-muted mb-0.5">対象</dt><dd class="text-text-light leading-relaxed">上記に当てはまらないが、建物のリユースに関心がある方</dd></div>
+                <div><dt class="font-semibold text-text-muted mb-0.5">相談できること</dt><dd class="text-text-light leading-relaxed">ESG対応、廃棄削減、自治体連携、研究、メディア取材など、何でもお気軽に</dd></div>
+                <div><dt class="font-semibold text-text-muted mb-0.5">最初の一歩</dt><dd class="text-text-light leading-relaxed">「こんなこと聞いていいのかな？」という段階で大丈夫です</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Partner -->
+      <section id="partner" class="border-t border-eco-border scroll-mt-16">
+        <div class="mx-auto max-w-4xl px-6 py-20">
+          <div class="text-center mb-10">
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase text-text-light mb-2">Circular Partner</p>
+            <h2 class="text-2xl md:text-3xl font-bold text-primary-dark leading-snug">初期実証パートナー募集</h2>
+          </div>
+          <p class="text-center text-sm text-text-muted leading-relaxed max-w-2xl mx-auto mb-10">解体・改修・移転・閉鎖の予定がある施設や、余剰となった建材・什器・設備をお持ちの企業・団体と、小さな実証から始めたいと考えています。<br>ロゴ掲載や大きな契約を前提にするのではなく、まずは現場・写真・数量・状態・搬出条件を整理し、次に活かせる可能性を一緒に探ります。</p>
+          <div class="flex flex-wrap justify-center gap-3">
+            <span class="rounded-full border border-eco-border bg-white px-5 py-2 text-sm font-medium text-primary-dark">企業</span>
+            <span class="rounded-full border border-eco-border bg-white px-5 py-2 text-sm font-medium text-primary-dark">自治体</span>
+            <span class="rounded-full border border-eco-border bg-white px-5 py-2 text-sm font-medium text-primary-dark">大学・研究機関</span>
+            <span class="rounded-full border border-eco-border bg-white px-5 py-2 text-sm font-medium text-primary-dark">設計者</span>
+            <span class="rounded-full border border-eco-border bg-white px-5 py-2 text-sm font-medium text-primary-dark">施工者</span>
+            <span class="rounded-full border border-eco-border bg-white px-5 py-2 text-sm font-medium text-primary-dark">解体・物流関係者</span>
+            <span class="rounded-full border border-eco-border bg-white px-5 py-2 text-sm font-medium text-primary-dark">建材メーカー</span>
+            <span class="rounded-full border border-eco-border bg-white px-5 py-2 text-sm font-medium text-primary-dark">地域団体</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Mission -->
+      <section id="mission" class="bg-primary-dark text-white scroll-mt-16">
+        <div class="mx-auto max-w-4xl px-6 py-24">
+          <div class="mb-20">
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase text-accent-light mb-2">Mission</p>
+            <h2 class="text-3xl md:text-4xl font-bold leading-snug">「リサイクル」から「リユース」へ<br><span class="text-2xl md:text-3xl text-white/80">これからの建築のあたりまえを支える</span></h2>
+          </div>
+          <div>
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase text-accent-light mb-2">Vision</p>
+            <h2 class="text-3xl md:text-4xl font-bold leading-snug">建築資源の情報流通OSをつくる。</h2>
+          </div>
+        </div>
+      </section>
+
+      <!-- Message -->
+      <section id="message" class="scroll-mt-16">
+        <div class="mx-auto max-w-4xl px-6 py-20">
+          <div class="text-center mb-10">
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase text-text-light mb-2">Message</p>
+            <h2 class="text-2xl md:text-4xl font-bold text-primary-dark leading-snug">建築の「捨てる」を、<br class="sm:hidden">次の「つくる」につなげたい。</h2>
+          </div>
+          <div class="max-w-2xl mx-auto space-y-4 text-sm text-text-muted leading-relaxed">
+            <p>私は、建築が好きです。建築は、たくさんの人の技術、判断、思想、時間が積み重なって生まれるものです。</p>
+            <p>だからこそ、解体・改修・移転のタイミングで、まだ価値のある建材・什器・設備が情報化されないまま失われていくことに、強い違和感があります。</p>
+            <p>建築資源循環ラボは、建築資源をただ売買する場ではありません。解体される前に情報を集め、使える可能性を見つけ、次の建築プロジェクトや企業・地域につなぐための社会実装プロジェクトです。</p>
+            <p>最初は小さく始めます。解体・改修前の調査、余剰材の整理、買い手候補の探索、仲間づくり。一つひとつの実証から、建築資源が循環する新しいあたりまえを育てていきたいと考えています。</p>
+          </div>
+          <div class="mt-12 border-t border-eco-border pt-8 max-w-2xl mx-auto">
+            <p class="font-bold text-primary-dark text-lg">藤井 康平</p>
+            <p class="text-sm text-text-muted mt-1">建築資源循環ラボ 発起人</p>
+            <p class="text-xs text-text-light mt-3 leading-relaxed">1987年生まれ。大手ゼネコンにて建築プロジェクトの実務・新規事業開発に従事。建設業界で培った経験と、建材・什器・設備のリユースに関する専門知識を活かし、建築資源循環の社会実装に取り組んでいます。</p>
+            <p class="text-xs text-text-light/70 mt-3 leading-relaxed border-l-2 border-eco-border pl-3">本活動は個人として準備している独立した社会実装プロジェクトであり、所属企業の公式活動ではありません。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Join Us -->
+      <section id="members" class="bg-surface-warm border-t border-eco-border scroll-mt-16">
+        <div class="mx-auto max-w-4xl px-6 py-20">
+          <div class="text-center mb-10">
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase text-text-light mb-2">Join Us</p>
+            <h2 class="text-2xl md:text-4xl font-bold text-primary-dark leading-snug">この指とまれ。</h2>
+            <p class="mt-2 text-base md:text-lg text-text-muted font-medium">建築資源循環を一緒につくる仲間へ。</p>
+          </div>
+          <p class="text-center text-sm text-text-muted leading-relaxed max-w-2xl mx-auto mb-10">この活動は、ひとりの会社ではなく、建築・不動産・施工・解体・物流・法務・広報・デザイン・研究・地域活動に関わる人たちと育てるプロジェクトです。最初は副業・プロボノ・月数時間のお手伝いでも構いません。小さな実証を積み重ねながら、将来的には本格的な事業体へ育てていきます。</p>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <div class="flex items-start gap-3 bg-white border border-eco-border rounded-lg p-4">
+              <span class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xs font-bold shrink-0 mt-0.5">1</span>
+              <span class="text-sm text-primary-dark font-medium">解体・改修前の現場を見られる人</span>
+            </div>
+            <div class="flex items-start gap-3 bg-white border border-eco-border rounded-lg p-4">
+              <span class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xs font-bold shrink-0 mt-0.5">2</span>
+              <span class="text-sm text-primary-dark font-medium">建材・什器・設備の価値判断ができる人</span>
+            </div>
+            <div class="flex items-start gap-3 bg-white border border-eco-border rounded-lg p-4">
+              <span class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xs font-bold shrink-0 mt-0.5">3</span>
+              <span class="text-sm text-primary-dark font-medium">リユース材を使いたい設計者・施工者</span>
+            </div>
+            <div class="flex items-start gap-3 bg-white border border-eco-border rounded-lg p-4">
+              <span class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xs font-bold shrink-0 mt-0.5">4</span>
+              <span class="text-sm text-primary-dark font-medium">企業・自治体との実証をつなげられる人</span>
+            </div>
+            <div class="flex items-start gap-3 bg-white border border-eco-border rounded-lg p-4">
+              <span class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xs font-bold shrink-0 mt-0.5">5</span>
+              <span class="text-sm text-primary-dark font-medium">広報・SNS・記事化を手伝える人</span>
+            </div>
+            <div class="flex items-start gap-3 bg-white border border-eco-border rounded-lg p-4">
+              <span class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xs font-bold shrink-0 mt-0.5">6</span>
+              <span class="text-sm text-primary-dark font-medium">データベースやAI活用を実装できる人</span>
+            </div>
+            <div class="flex items-start gap-3 bg-white border border-eco-border rounded-lg p-4">
+              <span class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center text-primary text-xs font-bold shrink-0 mt-0.5">7</span>
+              <span class="text-sm text-primary-dark font-medium">法務・契約・リスク整理を支援できる人</span>
+            </div>
+          </div>
+          <div class="text-center mt-10">
+            <a href="#contact" onclick="scrollToContact('仲間として参加したい')" class="eco-btn inline-block text-sm">参加について相談する</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="border-t border-eco-border scroll-mt-16">
+        <div class="mx-auto max-w-3xl px-6 py-20">
+          <div class="text-center mb-10">
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase text-text-light mb-2">FAQ</p>
+            <h2 class="text-2xl md:text-3xl font-bold text-primary-dark leading-snug">よくある質問</h2>
+          </div>
+          <div>
+            <details class="border-b border-eco-border">
+              <summary class="w-full text-left py-5 flex items-start gap-4 font-medium text-primary-dark hover:text-primary transition-colors">どんな相談ができますか？</summary>
+              <div class="pl-8 pb-5 text-sm text-text-muted leading-relaxed">建物に関するリユースのことなら何でもご相談いただけます。解体・改修・移転・新築・竣工直前、どのフェーズでも対応します。「こんなこと聞いていいのかな？」という段階で大丈夫です。</div>
+            </details>
+            <details class="border-b border-eco-border">
+              <summary class="w-full text-left py-5 flex items-start gap-4 font-medium text-primary-dark hover:text-primary transition-colors">まだ何も決まっていない段階でも相談できますか？</summary>
+              <div class="pl-8 pb-5 text-sm text-text-muted leading-relaxed">もちろんです。写真、図面、予定時期、施設の概要など、分かる範囲の情報からお話を始められます。まずはお気軽にお問い合わせください。</div>
+            </details>
+            <details class="border-b border-eco-border">
+              <summary class="w-full text-left py-5 flex items-start gap-4 font-medium text-primary-dark hover:text-primary transition-colors">中古建材の販売サイトですか？</summary>
+              <div class="pl-8 pb-5 text-sm text-text-muted leading-relaxed">いいえ。建築とリユースの専門家によるコンサルティングが主なサービスです。資源調査、活用先探索、実証設計など、プロとして伴走します。</div>
+            </details>
+            <details class="border-b border-eco-border">
+              <summary class="w-full text-left py-5 flex items-start gap-4 font-medium text-primary-dark hover:text-primary transition-colors">企業ロゴや実績は掲載されますか？</summary>
+              <div class="pl-8 pb-5 text-sm text-text-muted leading-relaxed">初期段階では、企業・団体名やロゴの掲載を前提にしません。必要に応じて、守秘や匿名での実証にも対応します。</div>
+            </details>
+            <details class="border-b border-eco-border">
+              <summary class="w-full text-left py-5 flex items-start gap-4 font-medium text-primary-dark hover:text-primary transition-colors">所属企業の公式活動ですか？</summary>
+              <div class="pl-8 pb-5 text-sm text-text-muted leading-relaxed">いいえ。本活動は発起人個人として準備している独立した社会実装プロジェクトです。所属企業の公式活動ではなく、所属企業の秘密情報・資産・ロゴ・データは使用していません。</div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="bg-surface-warm border-t border-eco-border scroll-mt-16">
+        <div class="mx-auto max-w-2xl px-6 py-20">
+          <div class="text-center mb-10">
+            <p class="text-xs font-semibold tracking-[0.2em] uppercase text-text-light mb-2">Contact</p>
+            <h2 class="text-2xl md:text-3xl font-bold text-primary-dark leading-snug">お問い合わせ</h2>
+            <p class="text-sm text-text-muted mt-4">建物のリユースに関することなら、何でもお気軽にご相談ください。</p>
+          </div>
+
+          <!-- Success message (hidden by default) -->
+          <div id="contact-success" class="text-center py-10 hidden">
+            <p class="text-lg font-bold text-primary-dark mb-2">送信ありがとうございました。</p>
+            <p class="text-sm text-text-muted">内容を確認のうえ、折り返しご連絡します。</p>
+            <button type="button" onclick="resetForm()" class="mt-6 text-sm text-primary underline hover:text-primary-dark">新しいお問い合わせを送る</button>
+          </div>
+
+          <!-- Contact Form -->
+          <form id="contact-form" class="space-y-6" novalidate>
+            <div>
+              <label class="block text-sm font-medium text-primary-dark mb-1">お名前 <span class="text-red-500">*</span></label>
+              <input type="text" name="name" required class="eco-input" placeholder="山田 太郎">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-primary-dark mb-1">会社名・所属</label>
+              <input type="text" name="organization" class="eco-input" placeholder="株式会社○○ / ○○大学">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-primary-dark mb-1">メールアドレス <span class="text-red-500">*</span></label>
+              <input type="email" name="email" required class="eco-input" placeholder="example@example.com">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-primary-dark mb-1">相談種別 <span class="text-red-500">*</span></label>
+              <select name="category" id="category-select" required class="eco-input">
+                <option value="">選択してください</option>
+                <option value="建物のリユースについて相談したい">建物のリユースについて相談したい</option>
+                <option value="リユース材を新築・改修で使いたい">リユース材を新築・改修で使いたい</option>
+                <option value="余剰建材・什器・設備を活かしたい">余剰建材・什器・設備を活かしたい</option>
+                <option value="ESG・廃棄削減について相談したい">ESG・廃棄削減について相談したい</option>
+                <option value="実証パートナーになりたい">実証パートナーになりたい</option>
+                <option value="仲間として参加したい">仲間として参加したい</option>
+                <option value="その他・とりあえず話を聞きたい">その他・とりあえず話を聞きたい</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-primary-dark mb-1">相談内容</label>
+              <textarea name="message" class="eco-input" rows="5" placeholder="ご相談の背景・内容をお書きください"></textarea>
+            </div>
+            <div class="flex items-start gap-2">
+              <input type="checkbox" required id="privacy-agree" name="privacy-agree" class="mt-1">
+              <label for="privacy-agree" class="text-sm text-text-muted">
+                <a href="/privacy" class="text-primary underline hover:text-primary-dark">個人情報の取り扱い</a>に同意する
+              </label>
+            </div>
+
+            <!-- Error message (hidden by default) -->
+            <div id="contact-error" class="bg-red-50 border border-red-200 rounded-lg p-4 text-sm hidden">
+              <p id="contact-error-title" class="text-red-700 font-medium mb-1">送信に失敗しました。</p>
+              <p id="contact-error-detail" class="text-red-600 mb-3"></p>
+              <a id="contact-mailto-fallback" href="#" class="inline-block bg-white border border-red-300 rounded-lg px-4 py-2 text-red-700 font-medium text-sm hover:bg-red-50 transition-colors">メールアプリで送信する</a>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" id="submit-btn" class="eco-btn text-sm px-10">送信する</button>
+            </div>
+          </form>
+
+          <div class="mt-8 text-center border-t border-eco-border pt-6">
+            <a href="mailto:circular.building.lab@gmail.com?subject=【建築資源循環ラボ】お問い合わせ" class="text-sm text-primary underline hover:text-primary-dark">メールで直接相談する</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-primary-dark text-white">
+    <div class="mx-auto max-w-6xl px-6 py-10">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
+        <div>
+          <p class="font-bold text-lg mb-1">建築資源循環ラボ</p>
+          <p class="text-sm text-accent-light">Circular Building Resources Lab</p>
+        </div>
+        <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-accent-light">
+          <a href="#service" class="hover:text-white transition-colors">Service</a>
+          <a href="#themes" class="hover:text-white transition-colors">Themes</a>
+          <a href="#partner" class="hover:text-white transition-colors">Partner</a>
+          <a href="#mission" class="hover:text-white transition-colors">Mission</a>
+          <a href="#members" class="hover:text-white transition-colors">Join Us</a>
+          <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+          <a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
+        </nav>
+      </div>
+      <div class="mt-8 pt-6 border-t border-white/20 text-xs text-accent-light/60 leading-relaxed">
+        <p>本活動は個人として準備している独立した社会実装プロジェクトです。所属企業の公式活動ではなく、所属企業の秘密情報・資産・ロゴ・データは使用していません。</p>
+        <p class="mt-3">&copy; 2026 建築資源循環ラボ / Circular Building Resources Lab</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll to contact and optionally set inquiry type
+    function scrollToContact(inquiryType) {
+      if (inquiryType) {
+        var select = document.getElementById('category-select');
+        if (select) select.value = inquiryType;
+      }
+      document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+      return false;
+    }
+
+    // Reset form after success
+    function resetForm() {
+      document.getElementById('contact-success').classList.add('hidden');
+      document.getElementById('contact-form').classList.remove('hidden');
+      document.getElementById('contact-form').reset();
+      document.getElementById('contact-error').classList.add('hidden');
+    }
+
+    // Form submission
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      var form = e.target;
+      var submitBtn = document.getElementById('submit-btn');
+      var errorDiv = document.getElementById('contact-error');
+      var successDiv = document.getElementById('contact-success');
+
+      // Build mailto fallback URL from current form values
+      function buildMailto() {
+        var fd = new FormData(form);
+        var subject = encodeURIComponent('【建築資源循環ラボ】お問い合わせ');
+        var bodyParts = [
+          'お名前: ' + (fd.get('name') || ''),
+          '会社名・所属: ' + (fd.get('organization') || ''),
+          'メールアドレス: ' + (fd.get('email') || ''),
+          '相談種別: ' + (fd.get('category') || ''),
+          '相談内容: ' + (fd.get('message') || '')
+        ];
+        var body = encodeURIComponent(bodyParts.join('\n'));
+        return 'mailto:circular.building.lab@gmail.com?subject=' + subject + '&body=' + body;
+      }
+
+      function showError(title, detail) {
+        document.getElementById('contact-error-title').textContent = title;
+        document.getElementById('contact-error-detail').textContent = detail;
+        document.getElementById('contact-mailto-fallback').href = buildMailto();
+        errorDiv.classList.remove('hidden');
+        submitBtn.disabled = false;
+        submitBtn.textContent = '送信する';
+      }
+
+      // Check privacy checkbox
+      var privacyChecked = form.querySelector('#privacy-agree').checked;
+      if (!privacyChecked) {
+        showError('入力内容に不足があります。', '個人情報の取り扱いへの同意にチェックを入れてください。');
+        return;
+      }
+
+      // Check required fields
+      var nameField = form.querySelector('[name="name"]').value.trim();
+      var emailField = form.querySelector('[name="email"]').value.trim();
+      var category = form.querySelector('[name="category"]').value;
+      if (!nameField || !emailField || !category) {
+        var missing = [];
+        if (!nameField) missing.push('お名前');
+        if (!emailField) missing.push('メールアドレス');
+        if (!category) missing.push('相談種別');
+        showError('入力内容に不足があります。', missing.join('、') + 'を入力してください。');
+        return;
+      }
+
+      // Basic email format check
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField)) {
+        showError('入力内容に不足があります。', 'メールアドレスの形式を確認してください。');
+        return;
+      }
+
+      // Disable button
+      submitBtn.disabled = true;
+      submitBtn.textContent = '送信中...';
+      errorDiv.classList.add('hidden');
+
+      var formData = new FormData(form);
+      var nameVal = formData.get('name');
+      var orgVal = formData.get('organization') || '';
+      var emailVal = formData.get('email');
+      var categoryVal = formData.get('category');
+      var messageVal = formData.get('message') || '';
+
+      // FormSubmit.co: free form-to-email service
+      // First submission to a new email triggers activation email.
+      // After clicking the activation link, all subsequent submissions work.
+      fetch('https://formsubmit.co/ajax/circular.building.lab@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: nameVal,
+          organization: orgVal,
+          email: emailVal,
+          inquiryType: categoryVal,
+          message: messageVal,
+          source: 'contact',
+          _subject: '【建築資源循環ラボ】お問い合わせ（' + categoryVal + '）',
+          _replyto: emailVal,
+          _template: 'table',
+          _captcha: 'false'
+        })
+      })
+      .then(function(res) {
+        return res.json().then(function(data) {
+          return { status: res.status, ok: res.ok, data: data };
+        }).catch(function() {
+          return { status: res.status, ok: res.ok, data: null };
+        });
+      })
+      .then(function(result) {
+        if (result.ok && result.data) {
+          // FormSubmit activation check: first-time submissions return success with a message
+          // asking the user to check email for activation
+          if (result.data.success === 'false' || result.data.success === false) {
+            console.error('[FormSubmit] Activation required or rejected:', JSON.stringify(result.data));
+            showError(
+              '送信先の初回設定が必要です。',
+              'circular.building.lab@gmail.com の受信箱にFormSubmitからの認証メールが届いています。メール内のリンクをクリック後、再度送信してください。お急ぎの場合は下のボタンからどうぞ。'
+            );
+          } else if (result.data.success) {
+            // Successful submission
+            console.info('[FormSubmit] Sent successfully:', JSON.stringify(result.data));
+            form.reset();
+            form.classList.add('hidden');
+            successDiv.classList.remove('hidden');
+          } else {
+            // Unexpected response shape
+            console.error('[FormSubmit] Unexpected response:', JSON.stringify(result.data));
+            showError(
+              '送信できませんでした。',
+              '送信サーバーから予期しない応答がありました。下のボタンからメールアプリで送信してください。'
+            );
+          }
+        } else if (!result.ok) {
+          console.error('[FormSubmit] HTTP error:', result.status, JSON.stringify(result.data));
+          if (result.status === 403) {
+            showError(
+              '送信がブロックされました。',
+              'スパム対策により送信が制限されています。下のボタンからメールアプリで送信してください。'
+            );
+          } else {
+            showError(
+              '送信できませんでした。',
+              '送信サーバーに接続できませんでした（エラー ' + result.status + '）。下のボタンからメールアプリで送信してください。'
+            );
+          }
+        } else {
+          console.error('[FormSubmit] No data in response');
+          showError(
+            '送信できませんでした。',
+            '送信サーバーから応答がありませんでした。下のボタンからメールアプリで送信してください。'
+          );
+        }
+      })
+      .catch(function(err) {
+        console.error('[FormSubmit] Network error:', err.message || err);
+        showError(
+          '通信エラーが発生しました。',
+          'ネットワーク接続を確認のうえ、再度お試しください。改善しない場合は下のボタンからメールアプリで送信してください。'
+        );
+      });
+    });
+  </script>
+
+</body>
+</html>
