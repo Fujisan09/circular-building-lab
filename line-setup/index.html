@@ -16,10 +16,11 @@
   .step-header.open .arrow { transform: rotate(90deg); }
   .step-body { padding: 16px; display: none; }
   .step-body.open { display: block; }
-  .copy-area { background: #f0f7f0; border: 1px solid #b7e4c7; border-radius: 8px; padding: 12px; margin: 10px 0; font-size: 13px; white-space: pre-wrap; word-break: break-word; position: relative; }
+  .copy-area { background: #f0f7f0; border: 1px solid #b7e4c7; border-radius: 8px; padding: 12px; margin: 10px 0; font-size: 13px; white-space: pre-wrap; word-break: break-word; }
   .copy-btn { display: block; margin-top: 8px; background: #2d6a4f; color: white; border: none; border-radius: 6px; padding: 8px 16px; font-size: 13px; font-weight: bold; cursor: pointer; width: 100%; }
   .copy-btn.copied { background: #06C755; }
   .note { font-size: 12px; color: #666; margin: 8px 0; }
+  .path { background: #fff3cd; border: 1px solid #ffc107; border-radius: 6px; padding: 8px 12px; font-size: 13px; font-weight: bold; margin: 8px 0; color: #856404; }
   .kw-tag { display: inline-block; background: #e8f5e9; border: 1px solid #b7e4c7; border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
   h3 { font-size: 14px; color: #2d6a4f; margin: 14px 0 6px; padding-top: 10px; border-top: 1px solid #eee; }
   h3:first-child { border-top: none; padding-top: 0; }
@@ -28,6 +29,7 @@
   table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
   td, th { border: 1px solid #ddd; padding: 6px 8px; text-align: left; }
   th { background: #f0f7f0; }
+  .warn { background: #fff3cd; border-radius: 8px; padding: 12px; font-size: 13px; color: #856404; margin: 12px 0; }
 </style>
 </head>
 <body>
@@ -38,18 +40,25 @@
 
 <div class="container">
 
+<div class="warn">
+  LINE公式アカウントアプリを開いて、このページと交互に操作してください。各ステップの「コピー」ボタンでテキストをコピーし、アプリに貼り付けます。
+</div>
+
 <!-- Step 1 -->
 <div class="step">
   <div class="step-header" onclick="toggle(this)">
     Step 1: プロフィール設定 <span class="arrow">▶</span>
   </div>
   <div class="step-body">
-    <p class="note">管理画面 → 設定 → アカウント設定</p>
+    <div class="path">アプリ下部「ホーム」→ 右上の歯車アイコン（設定）→「アカウント」</div>
+
     <h3>ステータスメッセージ</h3>
+    <p class="note">「ステータスメッセージ」をタップして入力</p>
     <div class="copy-area" id="c1">解体前に、建築資源の未来をつくる。</div>
     <button class="copy-btn" onclick="copyText('c1', this)">コピー</button>
 
     <h3>紹介文</h3>
+    <p class="note">「プロフィール」→「紹介文」をタップして入力</p>
     <div class="copy-area" id="c2">解体・改修前の建材・什器・設備を次の建築へつなぐプロジェクト。リユースのご相談はお気軽に。</div>
     <button class="copy-btn" onclick="copyText('c2', this)">コピー</button>
   </div>
@@ -61,7 +70,8 @@
     Step 2: あいさつメッセージ <span class="arrow">▶</span>
   </div>
   <div class="step-body">
-    <p class="note">トークルーム管理 → あいさつメッセージ</p>
+    <div class="path">アプリ下部「ホーム」→「あいさつメッセージ」</div>
+    <p class="note">見当たらない場合：ホーム画面を下にスクロール、または「設定」→「応答」→「あいさつメッセージ」をオンにしてから再度ホームへ</p>
     <div class="copy-area" id="c3">友だち追加ありがとうございます🌿
 
 建築資源循環ラボは、解体・改修・移転の前に建築資源を情報化し、次の建築プロジェクトや企業・地域へつなぐ社会実装プロジェクトです。
@@ -82,27 +92,50 @@ https://fujisan09.github.io/circular-building-lab/</div>
 <!-- Step 3 -->
 <div class="step">
   <div class="step-header" onclick="toggle(this)">
-    Step 3: 応答設定 <span class="arrow">▶</span>
+    Step 3: 応答機能をオンにする <span class="arrow">▶</span>
   </div>
   <div class="step-body">
-    <p class="note">設定 → 応答設定</p>
+    <div class="path">アプリ下部「ホーム」→ 右上の歯車（設定）→「応答」</div>
     <table>
-      <tr><th>項目</th><th>設定値</th></tr>
-      <tr><td>応答モード</td><td>チャット</td></tr>
-      <tr><td>あいさつメッセージ</td><td>オン</td></tr>
+      <tr><th>項目</th><th>設定</th></tr>
+      <tr><td>手動チャット</td><td>オン</td></tr>
       <tr><td>応答メッセージ</td><td>オン</td></tr>
     </table>
+    <p class="note">これで手動チャットと自動応答を併用するモードになります。</p>
   </div>
 </div>
 
-<!-- Step 4-1 -->
+<!-- 応答メッセージ作成の共通説明 -->
+<div class="step">
+  <div class="step-header" onclick="toggle(this)">
+    応答メッセージの作り方（共通） <span class="arrow">▶</span>
+  </div>
+  <div class="step-body">
+    <div class="path">アプリ下部「ホーム」→「応答メッセージ」→ 右下の「＋」または「作成」</div>
+    <p class="note">見当たらない場合：ホーム画面を下にスクロールして探してください</p>
+    <p>作成画面での入力順序：</p>
+    <ol style="font-size:13px; padding-left:20px; margin:8px 0;">
+      <li><b>タイトル</b>（管理用の名前、20文字以内）</li>
+      <li><b>応答タイプ</b>→「キーワード応答」を選択</li>
+      <li><b>キーワード</b>を入力（1つずつ追加）</li>
+      <li>「次へ」をタップ</li>
+      <li><b>メッセージ内容</b>を入力</li>
+      <li>「利用開始」をタップ</li>
+    </ol>
+    <p class="note">以下の応答1〜7を、この手順で1つずつ作成してください。</p>
+  </div>
+</div>
+
+<!-- 応答 1 -->
 <div class="step">
   <div class="step-header" onclick="toggle(this)">
     応答 1: リユース相談 <span class="arrow">▶</span>
   </div>
   <div class="step-body">
-    <p class="note">自動応答メッセージ → 応答メッセージ → 追加</p>
-    <h3>キーワード</h3>
+    <h3>タイトル</h3>
+    <div class="copy-area" id="t1">リユース相談</div>
+    <button class="copy-btn" onclick="copyText('t1', this)">コピー</button>
+    <h3>キーワード（1つずつ追加）</h3>
     <div><span class="kw-tag">リユース</span><span class="kw-tag">再利用</span><span class="kw-tag">再使用</span><span class="kw-tag">中古</span></div>
     <h3>メッセージ</h3>
     <div class="copy-area" id="c4">建材・什器・設備のリユースについてのご相談ですね。
@@ -114,12 +147,15 @@ https://fujisan09.github.io/circular-building-lab/</div>
   </div>
 </div>
 
-<!-- Step 4-2 -->
+<!-- 応答 2 -->
 <div class="step">
   <div class="step-header" onclick="toggle(this)">
     応答 2: 相談 <span class="arrow">▶</span>
   </div>
   <div class="step-body">
+    <h3>タイトル</h3>
+    <div class="copy-area" id="t2">相談</div>
+    <button class="copy-btn" onclick="copyText('t2', this)">コピー</button>
     <h3>キーワード</h3>
     <div><span class="kw-tag">相談</span><span class="kw-tag">問い合わせ</span><span class="kw-tag">聞きたい</span><span class="kw-tag">質問</span></div>
     <h3>メッセージ</h3>
@@ -133,12 +169,15 @@ https://fujisan09.github.io/circular-building-lab/#themes</div>
   </div>
 </div>
 
-<!-- Step 4-3 -->
+<!-- 応答 3 -->
 <div class="step">
   <div class="step-header" onclick="toggle(this)">
     応答 3: 什器・設備・建材 <span class="arrow">▶</span>
   </div>
   <div class="step-body">
+    <h3>タイトル</h3>
+    <div class="copy-area" id="t3">什器・設備・建材</div>
+    <button class="copy-btn" onclick="copyText('t3', this)">コピー</button>
     <h3>キーワード</h3>
     <div><span class="kw-tag">什器</span><span class="kw-tag">設備</span><span class="kw-tag">建材</span><span class="kw-tag">家具</span><span class="kw-tag">エアコン</span><span class="kw-tag">照明</span></div>
     <h3>メッセージ</h3>
@@ -152,12 +191,15 @@ https://fujisan09.github.io/circular-building-lab/#themes</div>
   </div>
 </div>
 
-<!-- Step 4-4 -->
+<!-- 応答 4 -->
 <div class="step">
   <div class="step-header" onclick="toggle(this)">
     応答 4: パートナー <span class="arrow">▶</span>
   </div>
   <div class="step-body">
+    <h3>タイトル</h3>
+    <div class="copy-area" id="t4">パートナー</div>
+    <button class="copy-btn" onclick="copyText('t4', this)">コピー</button>
     <h3>キーワード</h3>
     <div><span class="kw-tag">パートナー</span><span class="kw-tag">連携</span><span class="kw-tag">協力</span><span class="kw-tag">提携</span></div>
     <h3>メッセージ</h3>
@@ -171,12 +213,15 @@ https://fujisan09.github.io/circular-building-lab/#partner</div>
   </div>
 </div>
 
-<!-- Step 4-5 -->
+<!-- 応答 5 -->
 <div class="step">
   <div class="step-header" onclick="toggle(this)">
     応答 5: 仲間・参加 <span class="arrow">▶</span>
   </div>
   <div class="step-body">
+    <h3>タイトル</h3>
+    <div class="copy-area" id="t5">仲間・参加</div>
+    <button class="copy-btn" onclick="copyText('t5', this)">コピー</button>
     <h3>キーワード</h3>
     <div><span class="kw-tag">参加</span><span class="kw-tag">仲間</span><span class="kw-tag">メンバー</span><span class="kw-tag">手伝い</span><span class="kw-tag">ボランティア</span><span class="kw-tag">一緒に</span></div>
     <h3>メッセージ</h3>
@@ -190,12 +235,15 @@ https://fujisan09.github.io/circular-building-lab/#join</div>
   </div>
 </div>
 
-<!-- Step 4-6 -->
+<!-- 応答 6 -->
 <div class="step">
   <div class="step-header" onclick="toggle(this)">
     応答 6: ESG・環境 <span class="arrow">▶</span>
   </div>
   <div class="step-body">
+    <h3>タイトル</h3>
+    <div class="copy-area" id="t6">ESG・環境</div>
+    <button class="copy-btn" onclick="copyText('t6', this)">コピー</button>
     <h3>キーワード</h3>
     <div><span class="kw-tag">ESG</span><span class="kw-tag">SDGs</span><span class="kw-tag">CO2</span><span class="kw-tag">カーボン</span><span class="kw-tag">環境</span><span class="kw-tag">サステナ</span><span class="kw-tag">脱炭素</span></div>
     <h3>メッセージ</h3>
@@ -206,12 +254,15 @@ https://fujisan09.github.io/circular-building-lab/#join</div>
   </div>
 </div>
 
-<!-- Step 4-7 -->
+<!-- 応答 7 -->
 <div class="step">
   <div class="step-header" onclick="toggle(this)">
     応答 7: 料金 <span class="arrow">▶</span>
   </div>
   <div class="step-body">
+    <h3>タイトル</h3>
+    <div class="copy-area" id="t7">料金</div>
+    <button class="copy-btn" onclick="copyText('t7', this)">コピー</button>
     <h3>キーワード</h3>
     <div><span class="kw-tag">料金</span><span class="kw-tag">費用</span><span class="kw-tag">いくら</span><span class="kw-tag">価格</span><span class="kw-tag">見積</span></div>
     <h3>メッセージ</h3>
@@ -222,13 +273,18 @@ https://fujisan09.github.io/circular-building-lab/#join</div>
   </div>
 </div>
 
-<!-- Step 4-default -->
+<!-- デフォルト応答 -->
 <div class="step">
   <div class="step-header" onclick="toggle(this)">
-    デフォルト応答（その他） <span class="arrow">▶</span>
+    デフォルト応答（一律応答） <span class="arrow">▶</span>
   </div>
   <div class="step-body">
-    <p class="note">キーワードに一致しないメッセージへの応答</p>
+    <div class="path">「応答メッセージ」→「＋」→ 応答タイプを「一律応答」に設定</div>
+    <p class="note">キーワードに一致しない全メッセージに返す応答です</p>
+    <h3>タイトル</h3>
+    <div class="copy-area" id="t8">デフォルト応答</div>
+    <button class="copy-btn" onclick="copyText('t8', this)">コピー</button>
+    <h3>メッセージ</h3>
     <div class="copy-area" id="c11">メッセージありがとうございます。
 
 内容を確認して、担当からご連絡します。
@@ -240,15 +296,16 @@ https://fujisan09.github.io/circular-building-lab/#faq</div>
   </div>
 </div>
 
-<!-- Step 5 -->
+<!-- リッチメニュー -->
 <div class="step">
   <div class="step-header" onclick="toggle(this)">
-    Step 5: リッチメニュー <span class="arrow">▶</span>
+    Step 5: リッチメニュー（後でもOK） <span class="arrow">▶</span>
   </div>
   <div class="step-body">
-    <p class="note">トークルーム管理 → リッチメニュー → 作成<br>テンプレート: 大サイズ 6分割（2列×3行）</p>
+    <div class="path">アプリ下部「ホーム」→「リッチメニュー」→「作成」</div>
+    <p class="note">テンプレート: 大サイズ → 6分割を選択</p>
     <table>
-      <tr><th>位置</th><th>テキスト</th><th>タイプ</th></tr>
+      <tr><th>位置</th><th>ラベル</th><th>タイプ</th></tr>
       <tr><td>左上</td><td>サービス内容</td><td>リンク</td></tr>
       <tr><td>右上</td><td>相談する</td><td>テキスト</td></tr>
       <tr><td>左中</td><td>相談テーマ</td><td>リンク</td></tr>
@@ -257,26 +314,24 @@ https://fujisan09.github.io/circular-building-lab/#faq</div>
       <tr><td>右下</td><td>よくある質問</td><td>リンク</td></tr>
     </table>
 
-    <h3>各リンクURL（タップでコピー）</h3>
+    <h3>各URL（タップでコピー）</h3>
     <div class="copy-area" id="c12">https://fujisan09.github.io/circular-building-lab/#service</div>
-    <button class="copy-btn" onclick="copyText('c12', this)">サービス内容URL コピー</button>
+    <button class="copy-btn" onclick="copyText('c12', this)">サービス内容 コピー</button>
 
     <div class="copy-area" id="c13">相談したいことがあります</div>
     <button class="copy-btn" onclick="copyText('c13', this)">相談テキスト コピー</button>
 
     <div class="copy-area" id="c14">https://fujisan09.github.io/circular-building-lab/#themes</div>
-    <button class="copy-btn" onclick="copyText('c14', this)">相談テーマURL コピー</button>
+    <button class="copy-btn" onclick="copyText('c14', this)">相談テーマ コピー</button>
 
     <div class="copy-area" id="c15">https://fujisan09.github.io/circular-building-lab/#partner</div>
-    <button class="copy-btn" onclick="copyText('c15', this)">パートナーURL コピー</button>
+    <button class="copy-btn" onclick="copyText('c15', this)">パートナー コピー</button>
 
     <div class="copy-area" id="c16">https://fujisan09.github.io/circular-building-lab/#join</div>
-    <button class="copy-btn" onclick="copyText('c16', this)">仲間になるURL コピー</button>
+    <button class="copy-btn" onclick="copyText('c16', this)">仲間になる コピー</button>
 
     <div class="copy-area" id="c17">https://fujisan09.github.io/circular-building-lab/#faq</div>
-    <button class="copy-btn" onclick="copyText('c17', this)">よくある質問URL コピー</button>
-
-    <p class="note" style="margin-top:12px">デザイン: 背景色 #2d6a4f、白文字<br>メニューバーテキスト: 「メニューを開く」<br>デフォルト表示: オン</p>
+    <button class="copy-btn" onclick="copyText('c17', this)">よくある質問 コピー</button>
   </div>
 </div>
 
@@ -286,9 +341,9 @@ https://fujisan09.github.io/circular-building-lab/#faq</div>
     完了チェックリスト <span class="arrow">▶</span>
   </div>
   <div class="step-body">
-    <div class="check"><label><input type="checkbox"> プロフィール設定</label></div>
+    <div class="check"><label><input type="checkbox"> プロフィール（ステータスメッセージ・紹介文）</label></div>
     <div class="check"><label><input type="checkbox"> あいさつメッセージ</label></div>
-    <div class="check"><label><input type="checkbox"> 応答設定（チャットモード）</label></div>
+    <div class="check"><label><input type="checkbox"> 応答設定（手動チャット＋応答メッセージ オン）</label></div>
     <div class="check"><label><input type="checkbox"> 応答 1: リユース相談</label></div>
     <div class="check"><label><input type="checkbox"> 応答 2: 相談</label></div>
     <div class="check"><label><input type="checkbox"> 応答 3: 什器・設備・建材</label></div>
@@ -296,9 +351,9 @@ https://fujisan09.github.io/circular-building-lab/#faq</div>
     <div class="check"><label><input type="checkbox"> 応答 5: 仲間・参加</label></div>
     <div class="check"><label><input type="checkbox"> 応答 6: ESG・環境</label></div>
     <div class="check"><label><input type="checkbox"> 応答 7: 料金</label></div>
-    <div class="check"><label><input type="checkbox"> デフォルト応答</label></div>
+    <div class="check"><label><input type="checkbox"> デフォルト応答（一律応答）</label></div>
     <div class="check"><label><input type="checkbox"> リッチメニュー</label></div>
-    <div class="check"><label><input type="checkbox"> テスト送信で確認</label></div>
+    <div class="check"><label><input type="checkbox"> 自分のLINEから友だち追加してテスト送信</label></div>
   </div>
 </div>
 
