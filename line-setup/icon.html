@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プロフィールアイコン | 建築資源循環ラボ</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'Hiragino Sans', sans-serif; background: #f5f5f5; color: #333; padding: 16px; }
+  h1 { font-size: 16px; text-align: center; color: #2d6a4f; margin-bottom: 8px; }
+  .note { font-size: 12px; color: #666; text-align: center; margin-bottom: 20px; }
+  .icon-wrap { text-align: center; margin-bottom: 24px; }
+  .icon-wrap img { border-radius: 50%; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+  .icon-wrap p { font-size: 12px; color: #666; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<h1>LINE プロフィールアイコン</h1>
+<p class="note">画像を長押し →「写真に追加」で保存 → LINEアプリのプロフィール画像に設定</p>
+
+<div class="icon-wrap">
+  <img id="icon1" width="300" height="300" alt="アイコン">
+  <p>長押しで保存（640×640px）</p>
+</div>
+
+<script>
+var S = 640;
+var canvas = document.createElement('canvas');
+canvas.width = S;
+canvas.height = S;
+var ctx = canvas.getContext('2d');
+
+// 背景: 円形グラデーション
+var grad = ctx.createRadialGradient(S/2, S/2, S*0.1, S/2, S/2, S*0.5);
+grad.addColorStop(0, '#40916c');
+grad.addColorStop(1, '#1b4332');
+ctx.fillStyle = grad;
+ctx.fillRect(0, 0, S, S);
+
+// 円形の装飾リング
+ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+ctx.lineWidth = 2;
+ctx.beginPath();
+ctx.arc(S/2, S/2, S*0.44, 0, Math.PI*2);
+ctx.stroke();
+
+ctx.beginPath();
+ctx.arc(S/2, S/2, S*0.38, 0, Math.PI*2);
+ctx.stroke();
+
+// 循環を表す3つの矢印（リサイクルシンボル風）
+ctx.strokeStyle = 'rgba(255,255,255,0.25)';
+ctx.lineWidth = 3;
+var cx = S/2, cy = S*0.32, r = S*0.12;
+for (var a = 0; a < 3; a++) {
+  var angle = a * (Math.PI*2/3) - Math.PI/2;
+  var x1 = cx + Math.cos(angle) * r;
+  var y1 = cy + Math.sin(angle) * r;
+  var x2 = cx + Math.cos(angle + Math.PI*2/3) * r;
+  var y2 = cy + Math.sin(angle + Math.PI*2/3) * r;
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+  ctx.quadraticCurveTo(cx + Math.cos(angle + Math.PI/3) * r * 1.4, cy + Math.sin(angle + Math.PI/3) * r * 1.4, x2, y2);
+  ctx.stroke();
+}
+
+// メインテキスト「循」
+ctx.fillStyle = 'white';
+ctx.font = 'bold ' + Math.floor(S*0.32) + 'px -apple-system, Hiragino Sans, sans-serif';
+ctx.textAlign = 'center';
+ctx.textBaseline = 'middle';
+ctx.fillText('循', S/2, S*0.42);
+
+// サブテキスト
+ctx.fillStyle = 'rgba(255,255,255,0.9)';
+ctx.font = 'bold ' + Math.floor(S*0.065) + 'px -apple-system, Hiragino Sans, sans-serif';
+ctx.fillText('建築資源循環ラボ', S/2, S*0.7);
+
+// 英語
+ctx.fillStyle = 'rgba(255,255,255,0.5)';
+ctx.font = Math.floor(S*0.035) + 'px -apple-system, Hiragino Sans, sans-serif';
+ctx.letterSpacing = '2px';
+ctx.fillText('Circular Building Resources Lab', S/2, S*0.78);
+
+// 下部アクセント
+ctx.fillStyle = 'rgba(149,213,178,0.4)';
+ctx.font = Math.floor(S*0.04) + 'px serif';
+ctx.fillText('♻', S/2, S*0.88);
+
+document.getElementById('icon1').src = canvas.toDataURL('image/png');
+</script>
+</body>
+</html>
