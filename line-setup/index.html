@@ -52,6 +52,14 @@
   <div class="step-body">
     <div class="path">アプリ下部「ホーム」→ 右上の歯車アイコン（設定）→「アカウント」</div>
 
+    <h3>プロフィール画像</h3>
+    <p class="note">長押し →「写真に追加」で保存 → プロフィール画像に設定</p>
+    <div style="text-align:center;margin:8px 0;"><img id="iconImg" width="200" height="200" style="border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.15);" alt="プロフィール画像"></div>
+
+    <h3>背景画像</h3>
+    <p class="note">長押し →「写真に追加」で保存 → プロフィール背景画像に設定</p>
+    <div style="text-align:center;margin:8px 0;"><img id="bgImg" width="100%" style="border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);" alt="背景画像"></div>
+
     <h3>ステータスメッセージ</h3>
     <p class="note">「ステータスメッセージ」をタップして入力</p>
     <div class="copy-area" id="c1">解体前に、建築資源の未来をつくる。</div>
@@ -370,6 +378,66 @@ https://fujisan09.github.io/circular-building-lab/#faq</div>
 </div>
 
 <script>
+// プロフィールアイコン生成 (640x640)
+(function() {
+  var S = 640;
+  var c = document.createElement('canvas');
+  c.width = S; c.height = S;
+  var x = c.getContext('2d');
+  var g = x.createRadialGradient(S/2,S/2,S*0.1,S/2,S/2,S*0.5);
+  g.addColorStop(0,'#40916c'); g.addColorStop(1,'#1b4332');
+  x.fillStyle = g; x.fillRect(0,0,S,S);
+  x.strokeStyle = 'rgba(255,255,255,0.12)'; x.lineWidth = 2;
+  x.beginPath(); x.arc(S/2,S/2,S*0.44,0,Math.PI*2); x.stroke();
+  x.beginPath(); x.arc(S/2,S/2,S*0.38,0,Math.PI*2); x.stroke();
+  x.fillStyle = 'white';
+  x.font = 'bold '+Math.floor(S*0.32)+'px -apple-system,Hiragino Sans,sans-serif';
+  x.textAlign = 'center'; x.textBaseline = 'middle';
+  x.fillText('\u5FAA',S/2,S*0.42);
+  x.fillStyle = 'rgba(255,255,255,0.9)';
+  x.font = 'bold '+Math.floor(S*0.065)+'px -apple-system,Hiragino Sans,sans-serif';
+  x.fillText('\u5EFA\u7BC9\u8CC7\u6E90\u5FAA\u74B0\u30E9\u30DC',S/2,S*0.7);
+  x.fillStyle = 'rgba(255,255,255,0.5)';
+  x.font = Math.floor(S*0.035)+'px -apple-system,Hiragino Sans,sans-serif';
+  x.fillText('Circular Building Resources Lab',S/2,S*0.78);
+  document.getElementById('iconImg').src = c.toDataURL('image/png');
+})();
+
+// 背景画像生成 (1080x1920 縦長)
+(function() {
+  var W = 1080, H = 1920;
+  var c = document.createElement('canvas');
+  c.width = W; c.height = H;
+  var x = c.getContext('2d');
+  var g = x.createLinearGradient(0,0,W,H);
+  g.addColorStop(0,'#1b4332'); g.addColorStop(0.5,'#2d6a4f'); g.addColorStop(1,'#1b4332');
+  x.fillStyle = g; x.fillRect(0,0,W,H);
+  // 装飾: 円
+  x.strokeStyle = 'rgba(255,255,255,0.06)'; x.lineWidth = 1.5;
+  x.beginPath(); x.arc(W*0.2,H*0.15,200,0,Math.PI*2); x.stroke();
+  x.beginPath(); x.arc(W*0.8,H*0.4,300,0,Math.PI*2); x.stroke();
+  x.beginPath(); x.arc(W*0.3,H*0.7,250,0,Math.PI*2); x.stroke();
+  x.beginPath(); x.arc(W*0.75,H*0.85,180,0,Math.PI*2); x.stroke();
+  // 装飾: 斜め線
+  x.strokeStyle = 'rgba(149,213,178,0.08)'; x.lineWidth = 1;
+  for (var i = 0; i < 8; i++) {
+    x.beginPath();
+    x.moveTo(0, H*0.1 + i*H*0.12);
+    x.lineTo(W, H*0.05 + i*H*0.12);
+    x.stroke();
+  }
+  // 中央テキスト
+  x.fillStyle = 'rgba(255,255,255,0.08)';
+  x.font = 'bold 220px -apple-system,Hiragino Sans,sans-serif';
+  x.textAlign = 'center'; x.textBaseline = 'middle';
+  x.fillText('\u5FAA',W/2,H*0.45);
+  // 下部にサイト名
+  x.fillStyle = 'rgba(255,255,255,0.15)';
+  x.font = '24px -apple-system,Hiragino Sans,sans-serif';
+  x.fillText('Circular Building Resources Lab',W/2,H*0.92);
+  document.getElementById('bgImg').src = c.toDataURL('image/png');
+})();
+
 function toggle(el) {
   el.classList.toggle('open');
   el.nextElementSibling.classList.toggle('open');
