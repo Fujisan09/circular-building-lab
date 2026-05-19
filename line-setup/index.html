@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LINE設定ガイド | 建築資源循環ラボ</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, 'Hiragino Sans', sans-serif; background: #f5f5f5; color: #333; line-height: 1.7; }
+  .header { background: #2d6a4f; color: white; padding: 16px; text-align: center; position: sticky; top: 0; z-index: 10; }
+  .header h1 { font-size: 16px; }
+  .container { max-width: 600px; margin: 0 auto; padding: 12px; }
+  .step { background: white; border-radius: 12px; margin-bottom: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  .step-header { background: #2d6a4f; color: white; padding: 12px 16px; font-weight: bold; font-size: 15px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+  .step-header .arrow { transition: transform 0.2s; }
+  .step-header.open .arrow { transform: rotate(90deg); }
+  .step-body { padding: 16px; display: none; }
+  .step-body.open { display: block; }
+  .copy-area { background: #f0f7f0; border: 1px solid #b7e4c7; border-radius: 8px; padding: 12px; margin: 10px 0; font-size: 13px; white-space: pre-wrap; word-break: break-word; position: relative; }
+  .copy-btn { display: block; margin-top: 8px; background: #2d6a4f; color: white; border: none; border-radius: 6px; padding: 8px 16px; font-size: 13px; font-weight: bold; cursor: pointer; width: 100%; }
+  .copy-btn.copied { background: #06C755; }
+  .note { font-size: 12px; color: #666; margin: 8px 0; }
+  .kw-tag { display: inline-block; background: #e8f5e9; border: 1px solid #b7e4c7; border-radius: 4px; padding: 2px 8px; font-size: 12px; margin: 2px; }
+  h3 { font-size: 14px; color: #2d6a4f; margin: 14px 0 6px; padding-top: 10px; border-top: 1px solid #eee; }
+  h3:first-child { border-top: none; padding-top: 0; }
+  .check { margin: 8px 0; font-size: 14px; }
+  .check input { margin-right: 6px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+  td, th { border: 1px solid #ddd; padding: 6px 8px; text-align: left; }
+  th { background: #f0f7f0; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>LINE公式アカウント 設定ガイド</h1>
+</div>
+
+<div class="container">
+
+<!-- Step 1 -->
+<div class="step">
+  <div class="step-header" onclick="toggle(this)">
+    Step 1: プロフィール設定 <span class="arrow">▶</span>
+  </div>
+  <div class="step-body">
+    <p class="note">管理画面 → 設定 → アカウント設定</p>
+    <h3>ステータスメッセージ</h3>
+    <div class="copy-area" id="c1">解体前に、建築資源の未来をつくる。</div>
+    <button class="copy-btn" onclick="copyText('c1', this)">コピー</button>
+
+    <h3>紹介文</h3>
+    <div class="copy-area" id="c2">建築資源循環ラボは、解体・改修・移転の前に建築資源を情報化し、次の建築プロジェクトや企業・地域へつなぐ社会実装プロジェクトです。
+
+建物のリユースに関することなら、何でもお気軽にご相談ください。初回相談無料。
+
+🌐 https://fujisan09.github.io/circular-building-lab/</div>
+    <button class="copy-btn" onclick="copyText('c2', this)">コピー</button>
+  </div>
+</div>
+
+<!-- Step 2 -->
+<div class="step">
+  <div class="step-header" onclick="toggle(this)">
+    Step 2: あいさつメッセージ <span class="arrow">▶</span>
+  </div>
+  <div class="step-body">
+    <p class="note">トークルーム管理 → あいさつメッセージ</p>
+    <div class="copy-area" id="c3">友だち追加ありがとうございます🌿
+
+建築資源循環ラボは、解体・改修・移転の前に建築資源を情報化し、次の建築プロジェクトや企業・地域へつなぐ社会実装プロジェクトです。
+
+「建物を壊す前に、使えるものを次に渡したい」
+「リユース建材を使いたいけど、どう探せばいいかわからない」
+「ESG・廃棄削減の具体策を探している」
+
+どんな段階のご相談でも構いません。
+まずはお気軽にメッセージをお送りください。
+
+▼ 詳しくはこちら
+https://fujisan09.github.io/circular-building-lab/</div>
+    <button class="copy-btn" onclick="copyText('c3', this)">コピー</button>
+  </div>
+</div>
+
+<!-- Step 3 -->
+<div class="step">
+  <div class="step-header" onclick="toggle(this)">
+    Step 3: 応答設定 <span class="arrow">▶</span>
+  </div>
+  <div class="step-body">
+    <p class="note">設定 → 応答設定</p>
+    <table>
+      <tr><th>項目</th><th>設定値</th></tr>
+      <tr><td>応答モード</td><td>チャット</td></tr>
+      <tr><td>あいさつメッセージ</td><td>オン</td></tr>
+      <tr><td>応答メッセージ</td><td>オン</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- Step 4-1 -->
+<div class="step">
+  <div class="step-header" onclick="toggle(this)">
+    応答 1: リユース相談 <span class="arrow">▶</span>
+  </div>
+  <div class="step-body">
+    <p class="note">自動応答メッセージ → 応答メッセージ → 追加</p>
+    <h3>キーワード</h3>
+    <div><span class="kw-tag">リユース</span><span class="kw-tag">再利用</span><span class="kw-tag">再使用</span><span class="kw-tag">中古</span></div>
+    <h3>メッセージ</h3>
+    <div class="copy-area" id="c4">建材・什器・設備のリユースについてのご相談ですね。
+
+建物のフェーズ（解体前・改修前・移転前など）を教えていただければ、より具体的にお話しできます。
+
+お気軽にお聞かせください。</div>
+    <button class="copy-btn" onclick="copyText('c4', this)">コピー</button>
+  </div>
+</div>
+
+<!-- Step 4-2 -->
+<div class="step">
+  <div class="step-header" onclick="toggle(this)">
+    応答 2: 相談 <span class="arrow">▶</span>
+  </div>
+  <div class="step-body">
+    <h3>キーワード</h3>
+    <div><span class="kw-tag">相談</span><span class="kw-tag">問い合わせ</span><span class="kw-tag">聞きたい</span><span class="kw-tag">質問</span></div>
+    <h3>メッセージ</h3>
+    <div class="copy-area" id="c5">ご相談ありがとうございます。
+
+建物のリユース・資源活用について、どのようなことでもお気軽にお話しください。内容を確認して、担当からご連絡します。
+
+▼ 相談テーマの一覧はこちら
+https://fujisan09.github.io/circular-building-lab/#themes</div>
+    <button class="copy-btn" onclick="copyText('c5', this)">コピー</button>
+  </div>
+</div>
+
+<!-- Step 4-3 -->
+<div class="step">
+  <div class="step-header" onclick="toggle(this)">
+    応答 3: 什器・設備・建材 <span class="arrow">▶</span>
+  </div>
+  <div class="step-body">
+    <h3>キーワード</h3>
+    <div><span class="kw-tag">什器</span><span class="kw-tag">設備</span><span class="kw-tag">建材</span><span class="kw-tag">家具</span><span class="kw-tag">エアコン</span><span class="kw-tag">照明</span></div>
+    <h3>メッセージ</h3>
+    <div class="copy-area" id="c6">什器・設備・建材についてですね。
+
+「手放したい（売却・転用・寄付）」
+「探している（調達・購入）」
+
+どちらのご相談でしょうか？教えていただければ、具体的にご案内します。</div>
+    <button class="copy-btn" onclick="copyText('c6', this)">コピー</button>
+  </div>
+</div>
+
+<!-- Step 4-4 -->
+<div class="step">
+  <div class="step-header" onclick="toggle(this)">
+    応答 4: パートナー <span class="arrow">▶</span>
+  </div>
+  <div class="step-body">
+    <h3>キーワード</h3>
+    <div><span class="kw-tag">パートナー</span><span class="kw-tag">連携</span><span class="kw-tag">協力</span><span class="kw-tag">提携</span></div>
+    <h3>メッセージ</h3>
+    <div class="copy-area" id="c7">実証パートナーや連携にご関心をお持ちいただきありがとうございます。
+
+現在、初期実証パートナーを募集しています。不動産オーナー、ゼネコン、設計事務所、リユース事業者など、さまざまな立場の方と一緒に取り組みたいと考えています。
+
+▼ 詳しくはこちら
+https://fujisan09.github.io/circular-building-lab/#partner</div>
+    <button class="copy-btn" onclick="copyText('c7', this)">コピー</button>
+  </div>
+</div>
+
+<!-- Step 4-5 -->
+<div class="step">
+  <div class="step-header" onclick="toggle(this)">
+    応答 5: 仲間・参加 <span class="arrow">▶</span>
+  </div>
+  <div class="step-body">
+    <h3>キーワード</h3>
+    <div><span class="kw-tag">参加</span><span class="kw-tag">仲間</span><span class="kw-tag">メンバー</span><span class="kw-tag">手伝い</span><span class="kw-tag">ボランティア</span><span class="kw-tag">一緒に</span></div>
+    <h3>メッセージ</h3>
+    <div class="copy-area" id="c8">チームへの参加にご関心をお持ちいただきありがとうございます。
+
+現在、リサーチャー・営業・エンジニア・デザイナーなど、さまざまな職種で一緒に動ける方を募集しています。
+
+▼ 募集職種の詳細はこちら
+https://fujisan09.github.io/circular-building-lab/#join</div>
+    <button class="copy-btn" onclick="copyText('c8', this)">コピー</button>
+  </div>
+</div>
+
+<!-- Step 4-6 -->
+<div class="step">
+  <div class="step-header" onclick="toggle(this)">
+    応答 6: ESG・環境 <span class="arrow">▶</span>
+  </div>
+  <div class="step-body">
+    <h3>キーワード</h3>
+    <div><span class="kw-tag">ESG</span><span class="kw-tag">SDGs</span><span class="kw-tag">CO2</span><span class="kw-tag">カーボン</span><span class="kw-tag">環境</span><span class="kw-tag">サステナ</span><span class="kw-tag">脱炭素</span></div>
+    <h3>メッセージ</h3>
+    <div class="copy-area" id="c9">建築資源の循環は、廃棄物削減・CO2削減に直接つながります。
+
+具体的な取り組み設計や数値化のご相談もお受けしています。まずは建物やプロジェクトの状況をお聞かせください。</div>
+    <button class="copy-btn" onclick="copyText('c9', this)">コピー</button>
+  </div>
+</div>
+
+<!-- Step 4-7 -->
+<div class="step">
+  <div class="step-header" onclick="toggle(this)">
+    応答 7: 料金 <span class="arrow">▶</span>
+  </div>
+  <div class="step-body">
+    <h3>キーワード</h3>
+    <div><span class="kw-tag">料金</span><span class="kw-tag">費用</span><span class="kw-tag">いくら</span><span class="kw-tag">価格</span><span class="kw-tag">見積</span></div>
+    <h3>メッセージ</h3>
+    <div class="copy-area" id="c10">初回のご相談は無料です。
+
+具体的な調査・伴走支援については、建物の規模や内容に応じてお見積りします。まずはお気軽にご状況をお聞かせください。</div>
+    <button class="copy-btn" onclick="copyText('c10', this)">コピー</button>
+  </div>
+</div>
+
+<!-- Step 4-default -->
+<div class="step">
+  <div class="step-header" onclick="toggle(this)">
+    デフォルト応答（その他） <span class="arrow">▶</span>
+  </div>
+  <div class="step-body">
+    <p class="note">キーワードに一致しないメッセージへの応答</p>
+    <div class="copy-area" id="c11">メッセージありがとうございます。
+
+内容を確認して、担当からご連絡します。
+通常1〜2営業日以内にお返事しますので、少々お待ちください。
+
+▼ よくある質問はこちら
+https://fujisan09.github.io/circular-building-lab/#faq</div>
+    <button class="copy-btn" onclick="copyText('c11', this)">コピー</button>
+  </div>
+</div>
+
+<!-- Step 5 -->
+<div class="step">
+  <div class="step-header" onclick="toggle(this)">
+    Step 5: リッチメニュー <span class="arrow">▶</span>
+  </div>
+  <div class="step-body">
+    <p class="note">トークルーム管理 → リッチメニュー → 作成<br>テンプレート: 大サイズ 6分割（2列×3行）</p>
+    <table>
+      <tr><th>位置</th><th>テキスト</th><th>タイプ</th></tr>
+      <tr><td>左上</td><td>サービス内容</td><td>リンク</td></tr>
+      <tr><td>右上</td><td>相談する</td><td>テキスト</td></tr>
+      <tr><td>左中</td><td>相談テーマ</td><td>リンク</td></tr>
+      <tr><td>右中</td><td>パートナー募集</td><td>リンク</td></tr>
+      <tr><td>左下</td><td>仲間になる</td><td>リンク</td></tr>
+      <tr><td>右下</td><td>よくある質問</td><td>リンク</td></tr>
+    </table>
+
+    <h3>各リンクURL（タップでコピー）</h3>
+    <div class="copy-area" id="c12">https://fujisan09.github.io/circular-building-lab/#service</div>
+    <button class="copy-btn" onclick="copyText('c12', this)">サービス内容URL コピー</button>
+
+    <div class="copy-area" id="c13">相談したいことがあります</div>
+    <button class="copy-btn" onclick="copyText('c13', this)">相談テキスト コピー</button>
+
+    <div class="copy-area" id="c14">https://fujisan09.github.io/circular-building-lab/#themes</div>
+    <button class="copy-btn" onclick="copyText('c14', this)">相談テーマURL コピー</button>
+
+    <div class="copy-area" id="c15">https://fujisan09.github.io/circular-building-lab/#partner</div>
+    <button class="copy-btn" onclick="copyText('c15', this)">パートナーURL コピー</button>
+
+    <div class="copy-area" id="c16">https://fujisan09.github.io/circular-building-lab/#join</div>
+    <button class="copy-btn" onclick="copyText('c16', this)">仲間になるURL コピー</button>
+
+    <div class="copy-area" id="c17">https://fujisan09.github.io/circular-building-lab/#faq</div>
+    <button class="copy-btn" onclick="copyText('c17', this)">よくある質問URL コピー</button>
+
+    <p class="note" style="margin-top:12px">デザイン: 背景色 #2d6a4f、白文字<br>メニューバーテキスト: 「メニューを開く」<br>デフォルト表示: オン</p>
+  </div>
+</div>
+
+<!-- Checklist -->
+<div class="step">
+  <div class="step-header" onclick="toggle(this)">
+    完了チェックリスト <span class="arrow">▶</span>
+  </div>
+  <div class="step-body">
+    <div class="check"><label><input type="checkbox"> プロフィール設定</label></div>
+    <div class="check"><label><input type="checkbox"> あいさつメッセージ</label></div>
+    <div class="check"><label><input type="checkbox"> 応答設定（チャットモード）</label></div>
+    <div class="check"><label><input type="checkbox"> 応答 1: リユース相談</label></div>
+    <div class="check"><label><input type="checkbox"> 応答 2: 相談</label></div>
+    <div class="check"><label><input type="checkbox"> 応答 3: 什器・設備・建材</label></div>
+    <div class="check"><label><input type="checkbox"> 応答 4: パートナー</label></div>
+    <div class="check"><label><input type="checkbox"> 応答 5: 仲間・参加</label></div>
+    <div class="check"><label><input type="checkbox"> 応答 6: ESG・環境</label></div>
+    <div class="check"><label><input type="checkbox"> 応答 7: 料金</label></div>
+    <div class="check"><label><input type="checkbox"> デフォルト応答</label></div>
+    <div class="check"><label><input type="checkbox"> リッチメニュー</label></div>
+    <div class="check"><label><input type="checkbox"> テスト送信で確認</label></div>
+  </div>
+</div>
+
+</div>
+
+<script>
+function toggle(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+function copyText(id, btn) {
+  var text = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    btn.textContent = 'コピーしました';
+    btn.classList.add('copied');
+    setTimeout(function() { btn.textContent = 'コピー'; btn.classList.remove('copied'); }, 1500);
+  });
+}
+</script>
+</body>
+</html>
