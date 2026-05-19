@@ -397,8 +397,9 @@
 
           <!-- Success message (hidden by default) -->
           <div id="contact-success" class="text-center py-10 hidden">
-            <p class="text-lg font-bold text-primary-dark mb-2">送信ありがとうございました。</p>
-            <p class="text-sm text-text-muted">内容を確認のうえ、折り返しご連絡します。</p>
+            <p class="text-lg font-bold text-primary-dark mb-2">メールアプリが開きました。</p>
+            <p class="text-sm text-text-muted">内容をご確認のうえ送信してください。折り返しご連絡します。</p>
+            <p class="text-xs text-text-light mt-2">メールアプリが開かなかった場合は <a href="mailto:circular.building.lab@gmail.com?subject=【建築資源循環ラボ】お問い合わせ" class="text-primary underline">こちら</a> から直接ご連絡ください。</p>
             <button type="button" onclick="resetForm()" class="mt-6 text-sm text-primary underline hover:text-primary-dark">新しいお問い合わせを送る</button>
           </div>
 
@@ -564,99 +565,18 @@
         return;
       }
 
-      // Disable button
-      submitBtn.disabled = true;
-      submitBtn.textContent = '送信中...';
+      // mailto方式：フォーム内容をメールアプリで送信
+      // 外部サービスに依存せず確実に動作する
       errorDiv.classList.add('hidden');
+      var mailtoUrl = buildMailto();
+      window.location.href = mailtoUrl;
 
-      var formData = new FormData(form);
-      var nameVal = formData.get('name');
-      var orgVal = formData.get('organization') || '';
-      var emailVal = formData.get('email');
-      var categoryVal = formData.get('category');
-      var messageVal = formData.get('message') || '';
-
-      // FormSubmit.co: free form-to-email service
-      // First submission to a new email triggers activation email.
-      // After clicking the activation link, all subsequent submissions work.
-      fetch('https://formsubmit.co/ajax/circular.building.lab@gmail.com', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          name: nameVal,
-          organization: orgVal,
-          email: emailVal,
-          inquiryType: categoryVal,
-          message: messageVal,
-          source: 'contact',
-          _subject: '【建築資源循環ラボ】お問い合わせ（' + categoryVal + '）',
-          _replyto: emailVal,
-          _template: 'table',
-          _captcha: 'false'
-        })
-      })
-      .then(function(res) {
-        return res.json().then(function(data) {
-          return { status: res.status, ok: res.ok, data: data };
-        }).catch(function() {
-          return { status: res.status, ok: res.ok, data: null };
-        });
-      })
-      .then(function(result) {
-        if (result.ok && result.data) {
-          // FormSubmit activation check: first-time submissions return success with a message
-          // asking the user to check email for activation
-          if (result.data.success === 'false' || result.data.success === false) {
-            console.error('[FormSubmit] Activation required or rejected:', JSON.stringify(result.data));
-            showError(
-              '送信先の初回設定が必要です。',
-              'circular.building.lab@gmail.com の受信箱にFormSubmitからの認証メールが届いています。メール内のリンクをクリック後、再度送信してください。お急ぎの場合は下のボタンからどうぞ。'
-            );
-          } else if (result.data.success) {
-            // Successful submission
-            console.info('[FormSubmit] Sent successfully:', JSON.stringify(result.data));
-            form.reset();
-            form.classList.add('hidden');
-            successDiv.classList.remove('hidden');
-          } else {
-            // Unexpected response shape
-            console.error('[FormSubmit] Unexpected response:', JSON.stringify(result.data));
-            showError(
-              '送信できませんでした。',
-              '送信サーバーから予期しない応答がありました。下のボタンからメールアプリで送信してください。'
-            );
-          }
-        } else if (!result.ok) {
-          console.error('[FormSubmit] HTTP error:', result.status, JSON.stringify(result.data));
-          if (result.status === 403) {
-            showError(
-              '送信がブロックされました。',
-              'スパム対策により送信が制限されています。下のボタンからメールアプリで送信してください。'
-            );
-          } else {
-            showError(
-              '送信できませんでした。',
-              '送信サーバーに接続できませんでした（エラー ' + result.status + '）。下のボタンからメールアプリで送信してください。'
-            );
-          }
-        } else {
-          console.error('[FormSubmit] No data in response');
-          showError(
-            '送信できませんでした。',
-            '送信サーバーから応答がありませんでした。下のボタンからメールアプリで送信してください。'
-          );
-        }
-      })
-      .catch(function(err) {
-        console.error('[FormSubmit] Network error:', err.message || err);
-        showError(
-          '通信エラーが発生しました。',
-          'ネットワーク接続を確認のうえ、再度お試しください。改善しない場合は下のボタンからメールアプリで送信してください。'
-        );
-      });
+      // メールアプリが開いた後、成功画面を表示
+      setTimeout(function() {
+        form.reset();
+        form.classList.add('hidden');
+        successDiv.classList.remove('hidden');
+      }, 500);
     });
   </script>
 
