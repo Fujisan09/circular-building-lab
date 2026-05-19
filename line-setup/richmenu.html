@@ -34,11 +34,6 @@
   <img id="fullImg" style="width:100%;border-radius:8px;" alt="リッチメニュー一枚画像">
 </div>
 
-<div class="sep">
-  <h2>個別画像（6枚）</h2>
-  <p>それぞれ長押しで保存</p>
-</div>
-<div class="grid" id="grid"></div>
 
 <script>
 var items = [
@@ -77,9 +72,9 @@ function drawCell(ctx, item, x, y, w, h) {
 
 // canvasで描画 → img タグのsrcに変換（長押しで保存可能にする）
 
-// 一枚画像 (2500 x 1686)
-var fullW = 2500, fullH = 1686;
-var cellW = fullW / 2, cellH = fullH / 3;
+// 一枚画像 (2500 x 843) — 横3列 × 縦2行
+var fullW = 2500, fullH = 843;
+var cellW = fullW / 3, cellH = fullH / 2;
 var fullCanvas = document.createElement('canvas');
 fullCanvas.width = fullW;
 fullCanvas.height = fullH;
@@ -88,8 +83,8 @@ fctx.fillStyle = '#1b4332';
 fctx.fillRect(0, 0, fullW, fullH);
 
 items.forEach(function(item, i) {
-  var col = i % 2;
-  var row = Math.floor(i / 2);
+  var col = i % 3;
+  var row = Math.floor(i / 3);
   var x = col * cellW + 4;
   var y = row * cellH + 4;
   drawCell(fctx, item, x, y, cellW - 8, cellH - 8);
@@ -98,35 +93,6 @@ items.forEach(function(item, i) {
 // canvas → img に変換（長押しでカメラロール保存可能）
 document.getElementById('fullImg').src = fullCanvas.toDataURL('image/png');
 
-// 個別画像もimg タグで表示
-var grid = document.getElementById('grid');
-items.forEach(function(item, i) {
-  var div = document.createElement('div');
-  div.className = 'cell';
-
-  var canvas = document.createElement('canvas');
-  canvas.width = W;
-  canvas.height = H;
-  var ctx = canvas.getContext('2d');
-  ctx.fillStyle = '#2d6a4f';
-  ctx.fillRect(0, 0, W, H);
-  drawCell(ctx, item, 0, 0, W, H);
-
-  // canvas → img に変換
-  var img = document.createElement('img');
-  img.src = canvas.toDataURL('image/png');
-  img.style.width = '100%';
-  img.style.borderRadius = '8px';
-  img.alt = item.label;
-  div.appendChild(img);
-
-  var label = document.createElement('p');
-  label.style.cssText = 'font-size:11px;color:#666;text-align:center;margin-top:4px;';
-  label.textContent = item.label + '（長押しで保存）';
-  div.appendChild(label);
-
-  grid.appendChild(div);
-});
 </script>
 </body>
 </html>
