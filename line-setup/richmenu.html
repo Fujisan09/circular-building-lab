@@ -24,18 +24,21 @@
 <body>
 
 <h1>リッチメニュー画像ダウンロード</h1>
-<p class="note">各画像の「保存」ボタンをタップ → 画像が開きます → 長押しで保存<br>または下の1枚画像をそのまま使用</p>
-
-<div class="grid" id="grid"></div>
+<p class="note">画像を長押し →「写真に追加」または「画像を保存」でカメラロールに保存できます</p>
 
 <div class="sep">
-  <h2>一枚画像（これ1枚でもOK）</h2>
-  <p>長押しして画像を保存 → リッチメニューの背景画像としてアップロード</p>
+  <h2>一枚画像（これ1枚でOK）</h2>
+  <p>この画像を長押し →「写真に追加」→ リッチメニューの背景画像にアップロード</p>
 </div>
 <div class="full">
-  <canvas id="fullCanvas" width="2500" height="1686"></canvas>
-  <button class="dl-btn" onclick="downloadFull()">一枚画像を保存</button>
+  <img id="fullImg" style="width:100%;border-radius:8px;" alt="リッチメニュー一枚画像">
 </div>
+
+<div class="sep">
+  <h2>個別画像（6枚）</h2>
+  <p>それぞれ長押しで保存</p>
+</div>
+<div class="grid" id="grid"></div>
 
 <script>
 var items = [
@@ -72,43 +75,14 @@ function drawCell(ctx, item, x, y, w, h) {
   ctx.fillText(item.sub, x + w/2, y + h * 0.78);
 }
 
-// 個別画像
-var grid = document.getElementById('grid');
-items.forEach(function(item, i) {
-  var div = document.createElement('div');
-  div.className = 'cell';
-  var canvas = document.createElement('canvas');
-  canvas.width = W;
-  canvas.height = H;
-  canvas.id = 'cell' + i;
-  var ctx = canvas.getContext('2d');
-  // 角丸背景
-  ctx.fillStyle = '#2d6a4f';
-  ctx.fillRect(0, 0, W, H);
-  drawCell(ctx, item, 0, 0, W, H);
-  div.appendChild(canvas);
-
-  var btn = document.createElement('button');
-  btn.className = 'dl-btn';
-  btn.textContent = item.label + ' を保存';
-  btn.onclick = (function(c, b, name) {
-    return function() {
-      var link = document.createElement('a');
-      link.download = 'richmenu-' + (name) + '.png';
-      link.href = c.toDataURL('image/png');
-      link.click();
-      b.textContent = '保存しました';
-      b.className = 'dl-btn done';
-    };
-  })(canvas, btn, item.sub.toLowerCase());
-  div.appendChild(btn);
-  grid.appendChild(div);
-});
+// canvasで描画 → img タグのsrcに変換（長押しで保存可能にする）
 
 // 一枚画像 (2500 x 1686)
 var fullW = 2500, fullH = 1686;
 var cellW = fullW / 2, cellH = fullH / 3;
-var fullCanvas = document.getElementById('fullCanvas');
+var fullCanvas = document.createElement('canvas');
+fullCanvas.width = fullW;
+fullCanvas.height = fullH;
 var fctx = fullCanvas.getContext('2d');
 fctx.fillStyle = '#1b4332';
 fctx.fillRect(0, 0, fullW, fullH);
@@ -121,15 +95,38 @@ items.forEach(function(item, i) {
   drawCell(fctx, item, x, y, cellW - 8, cellH - 8);
 });
 
-function downloadFull() {
-  var link = document.createElement('a');
-  link.download = 'richmenu-full.png';
-  link.href = fullCanvas.toDataURL('image/png');
-  link.click();
-  var btn = document.querySelector('.full .dl-btn');
-  btn.textContent = '保存しました';
-  btn.className = 'dl-btn done';
-}
+// canvas → img に変換（長押しでカメラロール保存可能）
+document.getElementById('fullImg').src = fullCanvas.toDataURL('image/png');
+
+// 個別画像もimg タグで表示
+var grid = document.getElementById('grid');
+items.forEach(function(item, i) {
+  var div = document.createElement('div');
+  div.className = 'cell';
+
+  var canvas = document.createElement('canvas');
+  canvas.width = W;
+  canvas.height = H;
+  var ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#2d6a4f';
+  ctx.fillRect(0, 0, W, H);
+  drawCell(ctx, item, 0, 0, W, H);
+
+  // canvas → img に変換
+  var img = document.createElement('img');
+  img.src = canvas.toDataURL('image/png');
+  img.style.width = '100%';
+  img.style.borderRadius = '8px';
+  img.alt = item.label;
+  div.appendChild(img);
+
+  var label = document.createElement('p');
+  label.style.cssText = 'font-size:11px;color:#666;text-align:center;margin-top:4px;';
+  label.textContent = item.label + '（長押しで保存）';
+  div.appendChild(label);
+
+  grid.appendChild(div);
+});
 </script>
 </body>
 </html>
