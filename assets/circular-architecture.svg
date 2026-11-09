@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 650" role="img" aria-labelledby="cbrl-art-title cbrl-art-desc" fill="none" style="width:100%;height:auto;display:block">
 <title id="cbrl-art-title">建築資源を次の建築へつなぐ概念図</title>
-<desc id="cbrl-art-desc">既存の建築から取り出した梁、床材、ガラス、椅子を、情報と接続を整えて次の建築へ引き継ぐ。二つの建物を立体的な設計図で表現したイラスト。</desc>
+<desc id="cbrl-art-desc">解体・改修で取り外せる資材や新築現場の余剰材を、設計・調達の条件を整えて次の建築プロジェクトへ引き継ぐ。二つの建物を立体的な設計図で表現したイラスト。</desc>
 <defs>
   <marker id="cbrl-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M2 2 8 5 2 8" stroke="#3558a4" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></marker>
 </defs>
@@ -9,16 +9,16 @@
 <path d="M38 62v-16h16M666 46h16v16M38 588v16h16M666 604h16v-16" stroke="#cbd0cb" stroke-width="1"/>
 <path d="M56 65H311M409 65H661M485 598H661" stroke="#d4d8d2" stroke-width="1"/>
 <g fill="#202c2e" stroke="none" font-family="'Noto Sans JP','Noto Sans CJK JP','Hiragino Kaku Gothic ProN','Yu Gothic',Meiryo,sans-serif" font-size="21" font-weight="500">
-<text x="60" y="45">既存の建築</text>
+<text x="60" y="45">解体・改修・新築現場</text>
 <text x="412" y="45">建材・什器・設備</text>
-<text x="486" y="629">次の建築</text>
+<text x="486" y="629" font-size="18">次の建築プロジェクト</text>
 </g>
 <!-- Continuous transfer route; removed resources remain visibly connected. -->
 <path d="M319 212H350C379 212 379 174 406 174" stroke="#3558a4" stroke-width="1.6" stroke-dasharray="4 6" marker-end="url(#cbrl-arrow)"/>
 <path d="M649 240V287C649 305 635 313 619 322L600 333" stroke="#3558a4" stroke-width="1.6" stroke-dasharray="4 6" marker-end="url(#cbrl-arrow)"/>
 <circle cx="319" cy="212" r="3.5" fill="#ad5e3d"/>
-<text x="410" y="291" fill="#3558a4" font-family="'Noto Sans JP','Noto Sans CJK JP','Hiragino Kaku Gothic ProN','Yu Gothic',Meiryo,sans-serif" font-size="20" font-weight="500" stroke="none">情報と接続</text>
-<path d="M410 303H518" stroke="#3558a4" stroke-width="1"/>
+<text x="410" y="291" fill="#3558a4" font-family="'Noto Sans JP','Noto Sans CJK JP','Hiragino Kaku Gothic ProN','Yu Gothic',Meiryo,sans-serif" font-size="20" font-weight="500" stroke="none">設計・調達へ</text>
+<path d="M410 303H530" stroke="#3558a4" stroke-width="1"/>
 
 <polygon points="190.0,216.0 346.8,306.5 190.0,397.0 33.2,306.5" fill="none" stroke="#d0d5ce" stroke-width="1" stroke-dasharray="3 6"/>
 <polygon points="64.4,294.5 190.0,367.0 190.0,375.0 64.4,302.5" fill="#dfdfd7" stroke="#516161" stroke-width="1.4" />
