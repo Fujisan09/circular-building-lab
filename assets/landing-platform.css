@@ -8,3 +8,39 @@
 @media(max-width:440px){.hero-actions{grid-template-columns:1fr}.hero-actions .button{font-size:12px}.hero-actions .text-link{font-size:12px}.hero-actions .button .arrow{margin-left:auto}}
 
 .hero-catch{display:inline-block}.hero-catch+.hero-catch{margin-left:.35em}
+
+/* Phone and tablet navigation, readable fields, and larger touch targets. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.brand,.menu-toggle{min-height:44px}
+.menu-toggle{min-width:44px}
+.hero-actions .text-link,.footer-nav a,.footer-bottom a,.direct-email{min-height:44px}
+.footer-nav a,.direct-email{display:inline-flex;align-items:center}
+.direct-email{max-width:100%;word-break:break-word}
+.form-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.field input,.field select,.field textarea{min-width:0;font-size:16px}
+.consent{min-height:44px;cursor:pointer}
+.hero-copy,.platform-head>*,.scan-bridge-grid>*{min-width:0}
+@media(min-width:761px) and (max-width:850px){.hero-mini-resource p{flex-direction:column;gap:3px}.hero-mini-resource p span{align-self:flex-end}}
+@media(max-width:980px){
+  html{scroll-padding-top:88px}
+  .header-inner{width:calc(100% - 36px);min-height:70px;flex-wrap:wrap;gap:0}
+  .brand{gap:9px}
+  .brand-mark{width:28px;height:31px}
+  .brand-name{font-size:16px;letter-spacing:.02em}
+  .primary-nav{width:100%;flex-wrap:wrap;padding:10px 0 16px;gap:4px 21px}
+  .js .menu-toggle{display:inline-flex}
+  .js .primary-nav{display:none;position:absolute;top:100%;left:0;width:100%;max-height:calc(100dvh - 86px);overflow-y:auto;overscroll-behavior:contain;background:var(--paper);padding:17px 24px 23px;border-bottom:1px solid var(--line);box-shadow:0 10px 16px #202c2e0d}
+  .js .primary-nav.is-open{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 20px}
+  .js .primary-nav a{min-height:48px;padding:9px 10px;font-size:14px}
+  .js .primary-nav .nav-contact{justify-content:center}
+  html:not(.js) .site-header{position:static}
+  html:not(.js) .hero{padding-top:45px}
+}
+@media(max-width:440px){
+  .form-grid{grid-template-columns:minmax(0,1fr)}
+  .hero-visual-arrow{width:44px;height:44px}
+  .footer-bottom{flex-wrap:wrap}
+}
+@media(max-height:500px) and (orientation:landscape){
+  .js .primary-nav{max-height:calc(100dvh - 78px);padding-block:8px}
+}

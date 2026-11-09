@@ -8,7 +8,7 @@
   const categories = ['什器','建材','設備','その他'];
   const regions = ['地域未設定','北海道','青森県','岩手県','宮城県','秋田県','山形県','福島県','茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県','新潟県','富山県','石川県','福井県','山梨県','長野県','岐阜県','静岡県','愛知県','三重県','滋賀県','京都府','大阪府','兵庫県','奈良県','和歌山県','鳥取県','島根県','岡山県','広島県','山口県','徳島県','香川県','愛媛県','高知県','福岡県','佐賀県','長崎県','熊本県','大分県','宮崎県','鹿児島県','沖縄県','地域相談'];
   const state = {mode:'empty',items:[],selected:new Set(),requests:new Map(),prepared:new Map(),project:{name:'',region:'地域未設定',device:'K2（主調査）',ownerKnown:false},file:null,storageHealthy:true};
-  let pendingReplacement = null, importGeneration = 0;
+  let pendingReplacement = null, importGeneration = 0, dialogBodyOverflow = null;
 
   function notify(message, error=false, scroll=false) {
     $('scan-status').textContent = message;
@@ -16,11 +16,27 @@
     $('scan-status').classList.toggle('is-error',error);
     if(scroll) $('scan-status').scrollIntoView({behavior:'smooth',block:'center'});
   }
-  function openDialog(id) { const dialog=$(id); dialog._opener=document.activeElement; dialog.showModal(); }
+  function openDialog(id) {
+    const dialog=$(id);
+    if(dialog.open) return;
+    dialog._opener=document.activeElement;
+    dialog.showModal();
+    if(dialogBodyOverflow===null) dialogBodyOverflow=document.body.style.overflow;
+    document.body.style.overflow='hidden';
+    dialog.scrollTop=0;
+    dialog.querySelector('.scan-close')?.focus({preventScroll:true});
+  }
   function closeDialog(id) { const dialog=$(id); dialog.close(); }
   document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click',()=>closeDialog(button.dataset.close)));
   document.querySelectorAll('dialog').forEach(dialog=>{
-    dialog.addEventListener('close',()=>{ if(dialog._opener && document.contains(dialog._opener)) dialog._opener.focus({preventScroll:true}); if(dialog.id==='replace-dialog') pendingReplacement=null; });
+    dialog.addEventListener('close',()=>{
+      if(!document.querySelector('dialog[open]')) {
+        document.body.style.overflow=dialogBodyOverflow ?? '';
+        dialogBodyOverflow=null;
+      }
+      if(dialog._opener && document.contains(dialog._opener)) dialog._opener.focus({preventScroll:true});
+      if(dialog.id==='replace-dialog') pendingReplacement=null;
+    });
     dialog.addEventListener('click',event=>{if(event.target===dialog){const r=dialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)dialog.close();}});
   });
   function readSaved() {
@@ -124,7 +140,7 @@
     const total=state.items.length,ready=state.items.filter(eligible).length,pending=state.items.filter(item=>!item.reviewed||item.safety!=='reusable'||!hasName(item)).length;
     $('inventory-empty').hidden=!!total;$('inventory-toolbar').hidden=!total;$('inventory-stats').hidden=!total;$('inventory-sample-note').hidden=state.mode!=='sample';
     [['stat-total',total],['stat-ready',ready],['stat-pending',pending],['stat-prepared',state.prepared.size]].forEach(([id,value])=>$(id).innerHTML=value+'<small>品目</small>');
-    $('item-list').innerHTML=state.items.map(item=>{const status=itemState(item),prepared=state.prepared.get(item.id),available=eligible(item);return `<article class="scan-item${state.selected.has(item.id)?' is-selected':''}${prepared?' is-prepared':''}"><input class="scan-item-checkbox" type="checkbox" data-select="${esc(item.id)}" aria-label="${esc(item.name)}を出品準備に選択" ${state.selected.has(item.id)?'checked':''} ${available?'':'disabled'}><div class="scan-item-image">${imageFiles.has(item.image)?`<img src="../assets/${esc(item.image)}" alt="${esc(item.name)}のイメージイラスト">`:'<span class="scan-unknown-icon" aria-hidden="true">?</span>'}</div><div class="scan-item-title"><h3>${esc(item.name)}</h3><p>${esc(item.category)} · ${esc(item.dimensions||'寸法未確認')}</p></div><div class="scan-item-quantity"><strong>${esc(item.quantity)}</strong><span>${prepared?'残り '+esc(C.remaining(item.quantity,prepared)):'数量（単位込み）'}</span></div><div class="scan-item-state"><span class="scan-state-tag ${status.css}">${status.text}</span><p>${prepared?'準備済み '+esc(prepared.quantity):esc(status.detail)}</p></div><button class="scan-item-edit" data-edit="${esc(item.id)}" type="button">確認・編集</button></article>`;}).join('');
+    $('item-list').innerHTML=state.items.map(item=>{const status=itemState(item),prepared=state.prepared.get(item.id),available=eligible(item);return `<article class="scan-item${state.selected.has(item.id)?' is-selected':''}${prepared?' is-prepared':''}"><label class="scan-item-checkbox"><input type="checkbox" data-select="${esc(item.id)}" aria-label="${esc(item.name)}を出品準備に選択" ${state.selected.has(item.id)?'checked':''} ${available?'':'disabled'}></label><div class="scan-item-image">${imageFiles.has(item.image)?`<img src="../assets/${esc(item.image)}" alt="${esc(item.name)}のイメージイラスト">`:'<span class="scan-unknown-icon" aria-hidden="true">?</span>'}</div><div class="scan-item-title"><h3>${esc(item.name)}</h3><p>${esc(item.category)} · ${esc(item.dimensions||'寸法未確認')}</p></div><div class="scan-item-quantity"><strong>${esc(item.quantity)}</strong><span>${prepared?'残り '+esc(C.remaining(item.quantity,prepared)):'数量（単位込み）'}</span></div><div class="scan-item-state"><span class="scan-state-tag ${status.css}">${status.text}</span><p>${prepared?'準備済み '+esc(prepared.quantity):esc(status.detail)}</p></div><button class="scan-item-edit" data-edit="${esc(item.id)}" type="button">確認・編集</button></article>`;}).join('');
     const eligibleIds=state.items.filter(eligible).map(item=>item.id),selectedEligible=eligibleIds.filter(id=>state.selected.has(id));
     $('select-eligible').checked=eligibleIds.length>0&&selectedEligible.length===eligibleIds.length;$('select-eligible').indeterminate=selectedEligible.length>0&&selectedEligible.length<eligibleIds.length;$('select-eligible').disabled=!eligibleIds.length;
   }

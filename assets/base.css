@@ -3,3 +3,15 @@
 @media(max-width:900px){.header-inner{gap:18px;width:calc(100% - 40px)}.brand-name{font-size:16px}.primary-nav{gap:16px}.primary-nav a{font-size:11px}.container{width:calc(100% - 40px)}}
 @media(max-width:640px){html{scroll-padding-top:120px}.header-inner{flex-wrap:wrap;gap:0;min-height:0;padding-top:12px;width:calc(100% - 32px)}.brand-mark{width:26px;height:29px}.brand-name{font-size:16px}.primary-nav{width:100%;justify-content:space-between;gap:8px;min-height:52px}.primary-nav a{font-size:11px;min-height:40px}.primary-nav .nav-cta{padding:7px 12px;min-height:36px}.container{width:calc(100% - 32px)}.footer-inner{display:block}.footer-nav{margin-top:15px;gap:12px}.site-footer{margin-top:48px;padding-top:28px}.button{font-size:12px;padding:12px 16px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* Keep navigation and form controls comfortable on touch screens. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+.brand{min-height:44px}
+.footer-nav a{min-height:44px}
+@media(max-width:900px){
+  .primary-nav a,.primary-nav .nav-cta{min-height:44px}
+}
+@media(max-width:640px){
+  .primary-nav{flex-wrap:wrap;padding-block:6px;gap:4px 12px;justify-content:flex-start}
+  .primary-nav .nav-cta{margin-left:auto}
+}

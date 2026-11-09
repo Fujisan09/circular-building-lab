@@ -8,3 +8,80 @@
 @media(max-width:355px){.scan-content{padding-inline:14px}.scan-heading h1{font-size:30px}.scan-section-heading h2{font-size:21px}.scan-section-heading>.scan-btn{font-size:9px;padding-inline:7px}.scan-preparation .scan-section-heading{align-items:start}.scan-preparation .scan-section-heading h2{font-size:19px}.scan-prep-number{font-size:30px}.scan-preview-consent>.scan-btn{font-size:10px;gap:5px}.scan-item{grid-template-columns:18px 46px minmax(0,1fr) 53px;gap:6px}.scan-item-image{width:46px;height:53px}.scan-item-title h3{font-size:11px}.scan-item-edit{font-size:9px}.scan-prepared-heading h3{font-size:13px}}
 @media(prefers-reduced-motion:reduce){.scan-page *{scroll-behavior:auto!important;transition:none!important}.scan-btn:hover{transform:none!important}}
 @media print{.scan-site-header,.scan-rail,.scan-import-grid,.scan-process-note,.scan-selection-panel,.scan-prep-explain,.scan-export-actions,.scan-footer,.scan-item-edit,.scan-item-checkbox{display:none!important}.scan-shell{display:block}.scan-content{padding:0}.scan-page{background:white}.scan-item{break-inside:avoid}.scan-prototype{border:0}.scan-prepared-panel{break-inside:avoid}}
+
+/* Touch targets, native form sizing, and scrolling dialogs on small screens. */
+@media screen {
+  .scan-page button,
+  .scan-page .scan-btn,
+  .scan-site-header .primary-nav a,
+  .scan-market-link,
+  .scan-rail-bottom a,
+  .scan-footer a,
+  .scan-inventory-toolbar label,
+  .scan-check-field { min-height:44px; }
+  .scan-footer a { display:inline-flex; align-items:center; }
+  .scan-page .scan-close { width:44px; height:44px; flex-shrink:0; }
+  .scan-field,
+  .scan-field input,
+  .scan-field select,
+  .scan-field textarea,
+  .scan-selection-row>div,
+  .scan-selection-row label,
+  .scan-dialog-heading>div { min-width:0; }
+  .scan-field input,
+  .scan-field select,
+  .scan-field textarea,
+  .scan-selection-row input { font-size:16px; min-height:44px; }
+  .scan-form-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .scan-item { grid-template-columns:44px 76px minmax(135px,1fr) minmax(100px,.7fr) 95px 68px; }
+  .scan-item-checkbox { display:grid; place-items:center; width:44px; height:44px; align-self:center; cursor:pointer; }
+  .scan-item-checkbox:has(input:disabled) { cursor:not-allowed; }
+  .scan-item-title,
+  .scan-item-quantity,
+  .scan-item-state { min-width:0; overflow-wrap:anywhere; }
+  .scan-selection-row p { overflow-wrap:anywhere; }
+  .scan-prepared-row>span { min-width:0; max-width:45%; overflow-wrap:anywhere; }
+  .scan-prepared-row button { min-width:44px; flex-shrink:0; }
+  .scan-dialog {
+    --dialog-padding:29px;
+    --dialog-space:40px;
+    padding:var(--dialog-padding);
+    max-height:calc(100vh - var(--dialog-space) - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));
+    max-height:calc(100dvh - var(--dialog-space) - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));
+    overscroll-behavior:contain;
+    scroll-padding-block:112px 24px;
+  }
+  .scan-dialog-heading {
+    position:sticky;
+    top:calc(-1 * var(--dialog-padding));
+    z-index:2;
+    margin:calc(-1 * var(--dialog-padding)) calc(-1 * var(--dialog-padding)) 18px;
+    padding:18px var(--dialog-padding) 14px;
+    background:#fffefa;
+    border-bottom:1px solid #dce3d6;
+  }
+  .scan-dialog-heading h2 { overflow-wrap:anywhere; }
+  .scan-dialog-actions>.scan-btn { min-width:0; }
+}
+@media screen and (max-width:1250px) {
+  .scan-item { grid-template-columns:44px 64px minmax(110px,1fr) 92px 85px 57px; }
+}
+@media screen and (max-width:800px) {
+  .scan-item { grid-template-columns:44px 62px minmax(0,1fr) 85px 62px; }
+}
+@media screen and (max-width:600px) {
+  .scan-item { grid-template-columns:44px 56px minmax(0,1fr) 64px; gap:5px 8px; }
+  .scan-item-edit { padding-inline:4px; }
+  .scan-dropzone>.scan-btn { min-width:0; width:min(230px,100%); }
+  .scan-form-grid { grid-template-columns:minmax(0,1fr); }
+  .scan-dialog { --dialog-padding:22px; --dialog-space:24px; }
+}
+@media screen and (max-width:400px) {
+  .scan-selection-row { grid-template-columns:minmax(0,1fr); gap:10px; }
+}
+@media screen and (max-width:355px) {
+  .scan-item { grid-template-columns:44px 46px minmax(0,1fr) 58px; gap:6px; }
+}
+@media screen and (hover:none) {
+  .scan-btn:hover { transform:none; }
+}

@@ -12,3 +12,50 @@
 @media(max-width:700px){.mkt-results-tools{margin-top:12px}.mkt-clear-favorites{font-size:9px!important;min-height:30px}}
 
 .mkt-local-section{scroll-margin-top:110px}@media(max-width:700px){.mkt-local-section,.mkt-resources{scroll-margin-top:125px}}
+
+/* Keep controls usable by touch without changing the resource-card layout. */
+@media screen {
+  .mkt-body button,
+  .mkt-footer-inner nav a,
+  .mkt-real-contact { min-height:44px; }
+  .mkt-save-button,
+  .mkt-icon-button { width:44px; height:44px; flex-shrink:0; }
+  .mkt-search input,
+  .mkt-region select,
+  .mkt-inquiry textarea { font-size:16px; }
+  .mkt-searchbar,
+  .mkt-search,
+  .mkt-detail-summary,
+  .mkt-detail-specs,
+  .mkt-inquiry,
+  .mkt-detail-essentials>div { min-width:0; }
+  .mkt-detail-essentials { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .mkt-card h3 button,
+  .mkt-detail-intro { overflow-wrap:anywhere; }
+  .mkt-results-tools { flex-wrap:wrap; }
+  .mkt-real-contact { display:inline-flex; align-items:center; }
+  .mkt-dialog {
+    --dialog-space:44px;
+    max-height:calc(100vh - var(--dialog-space) - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));
+    max-height:calc(100dvh - var(--dialog-space) - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));
+    overflow:auto;
+    scroll-padding-block:85px 24px;
+  }
+  .mkt-toast { bottom:max(18px,env(safe-area-inset-bottom,0px)); }
+}
+@media screen and (max-width:900px) {
+  .mkt-dialog { --dialog-space:28px; }
+}
+@media screen and (max-width:700px) {
+  .mkt-dialog { --dialog-space:20px; }
+}
+@media screen and (max-width:480px) {
+  .mkt-searchbar { grid-template-columns:minmax(0,1fr); }
+  .mkt-search,
+  .mkt-region,
+  .mkt-saved-filter { grid-column:1; grid-row:auto; }
+}
+@media screen and (hover:none) {
+  .mkt-card:hover,
+  .mkt-card:hover .mkt-card-image-wrap img { transform:none; }
+}
