@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f4ee">
+  <title>Scan Desk｜スキャンから、次の使い手へ。｜建築資源循環ラボ</title>
+  <meta name="description" content="PLYファイルの情報確認から、品目・数量の整理、出品準備まで。建築資源循環ラボの操作できる公開プロトタイプです。">
+  <link rel="stylesheet" href="../assets/base.css">
+  <link rel="stylesheet" href="scan.css">
+<link rel="icon" href="../assets/logo.svg" type="image/svg+xml">
+<link rel="canonical" href="https://fujisan09.github.io/circular-building-lab/scan/">
+<meta property="og:url" content="https://fujisan09.github.io/circular-building-lab/scan/">
+<meta property="og:image" content="https://fujisan09.github.io/circular-building-lab/assets/social-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="建築資源循環ラボ。建材・什器・設備を次の使い手へ。">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body class="scan-page">
+<a class="skip-link" href="#scan-main">本文へスキップ</a>
+<header class="site-header scan-site-header">
+  <div class="header-inner">
+    <a class="brand" href="../"><svg class="brand-mark" viewBox="0 0 36 40" fill="none" aria-hidden="true"><path d="M3 11 18 2l15 9v18l-15 9L3 29V11Z" stroke="currentColor" stroke-width="1.5"/><path d="m3 11 15 9 15-9M18 20v18M10 15v10l8 5 8-5V15" stroke="currentColor" stroke-width="1.5"/></svg><span class="brand-name">建築資源循環ラボ</span></a>
+    <nav class="primary-nav" aria-label="メインナビゲーション"><a href="../">ラボについて</a><a href="../market/">資源を探す</a><a href="./" aria-current="page">スキャンから出品準備</a></nav>
+  </div>
+</header>
+<main id="scan-main" class="scan-shell">
+  <aside class="scan-rail" aria-label="作業の流れ">
+    <a class="scan-app-brand" href="./"><span class="scan-app-symbol" aria-hidden="true">▧</span><span>Scan Desk<small>RESOURCE WORKSPACE</small></span></a>
+    <p class="scan-rail-label">スキャンから、次の使い手へ。</p>
+    <ol class="scan-steps"><li class="is-active" id="step-project"><a href="#scan-project"><span>01</span><div>案件を整える<small>PROJECT</small></div></a></li><li id="step-import"><a href="#scan-import"><span>02</span><div>データを読み込む<small>IMPORT</small></div></a></li><li id="step-review"><a href="#scan-inventory"><span>03</span><div>品目と数量を確認<small>REVIEW</small></div></a></li><li id="step-prepare"><a href="#scan-preparation"><span>04</span><div>出品を準備する<small>PREPARE</small></div></a></li></ol>
+    <div class="scan-rail-bottom"><span class="scan-mode-dot"></span><strong>ブラウザー内で体験</strong><p>データの読込と入力は、この端末の中で処理します。</p><a href="../market/">マーケットへ戻る <span aria-hidden="true">↗</span></a></div>
+  </aside>
+  <div class="scan-content">
+    <div class="scan-prototype"><strong>PUBLIC PROTOTYPE</strong><span>サンプルは架空のデータです。実際のAI解析・公開出品・取引は行いません。</span></div>
+    <header class="scan-heading"><div><p class="scan-kicker">SCAN → LIST → NEXT USE</p><h1>空間の情報を、<br class="scan-mobile-break">次の資源へ。</h1><p>読み込みから、品目の確認、出品準備まで。ひとつの流れを、ここで。</p></div><a class="scan-market-link" href="../market/">マーケットを見る <span aria-hidden="true">↗</span></a></header>
+    <section class="scan-project-bar" id="scan-project" aria-labelledby="scan-project-title"><div class="scan-project-icon" aria-hidden="true">▦</div><div class="scan-project-copy"><p id="scan-project-title">現在の案件</p><h2 id="project-name">まずはサンプルから始めよう</h2><span id="project-area">K2を主調査に、iPhoneを補助撮影に。</span></div><button id="edit-project" class="scan-btn scan-btn-outline" type="button">案件情報を設定</button></section>
+    <div id="scan-status" class="scan-status" role="status" aria-live="polite" hidden></div>
+    <section class="scan-import-grid" id="scan-import" aria-label="スキャンデータの読み込み">
+      <div class="scan-dropzone" id="dropzone"><div class="scan-section-meta"><span>01 / IMPORT</span><span class="scan-small-tag">PLY</span></div><div class="scan-upload-icon" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none"><path d="M24 32V8m-9 9 9-9 9 9M9 29v10h30V29" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 7v7M5 7h7M43 7v7M43 7h-7" stroke="currentColor" opacity=".35"/></svg></div><h2>PLYデータから読み込み</h2><p>ファイルをここにドロップ<br>または、端末から選択してください。</p><input type="file" id="ply-file" accept=".ply" hidden><button class="scan-btn scan-btn-primary" id="choose-file" type="button">PLYファイルを選ぶ <span aria-hidden="true">＋</span></button><p class="scan-micro">ファイルは送信されません。ヘッダー情報のみを確認します。</p><div id="file-result" class="scan-file-result" hidden><div class="scan-file-head"><strong id="file-name"></strong><span id="file-size"></span></div><dl id="file-meta"></dl><p>頂点数はヘッダーの宣言値です。データ本体・座標単位・認識精度は未検証です。</p></div></div>
+      <div class="scan-demo-card"><div class="scan-section-meta"><span>TRY THE WORKFLOW</span><span class="scan-demo-chip">架空のオフィス</span></div><div class="scan-demo-art" aria-hidden="true"><div class="scan-dot-grid"></div><img class="scan-demo-desk" src="../assets/desk.svg" alt=""><img class="scan-demo-chair" src="../assets/chair.svg" alt=""><span class="scan-object-label label-chair">OFFICE CHAIR <b>100脚</b></span><span class="scan-object-label label-desk">MEETING DESK <b>12台</b></span><i class="scan-scanline"></i></div><div class="scan-demo-copy"><h2>スキャンデータがなくても。</h2><p>5品目のサンプルで、数量の確認から<br>マーケットの出品プレビューまで体験できます。</p><button id="load-sample" type="button" class="scan-btn scan-btn-dark">サンプルで体験 <span aria-hidden="true">→</span></button></div></div>
+    </section>
+    <div class="scan-process-note"><span aria-hidden="true">↳</span><p><strong>実データの自動抽出は、開発中のPC版ScanDeskで。</strong>この公開画面ではPLYの形式確認と手入力ができます。数・位置の確認はLCCで行う構想です。実機との接続は検証中です。</p></div>
+    <section class="scan-inventory" id="scan-inventory" aria-labelledby="inventory-title"><div class="scan-section-heading"><div><p class="scan-kicker">02 / REVIEW</p><h2 id="inventory-title">資源のリスト</h2><p>品目・数量・寸法を、人の目で確かめる。</p></div><button id="add-item" type="button" class="scan-btn scan-btn-outline">＋ 手入力で追加</button></div>
+      <div id="inventory-stats" class="scan-stats" hidden><div><span>記録された品目</span><strong id="stat-total">0<small>品目</small></strong></div><div><span>確認済み・準備可能</span><strong id="stat-ready">0<small>品目</small></strong></div><div><span>確認が必要</span><strong id="stat-pending">0<small>品目</small></strong></div><div><span>出品準備済み</span><strong id="stat-prepared">0<small>品目</small></strong></div></div>
+      <div class="scan-inventory-toolbar" id="inventory-toolbar" hidden><label><input type="checkbox" id="select-eligible"> 準備できる品目をすべて選択</label><span>引き渡しまでに数量が変わる可能性があります。</span></div>
+      <div class="scan-empty" id="inventory-empty"><span aria-hidden="true">▧</span><h3>ここに、建物の資源が並びます。</h3><p>「サンプルで体験」または「手入力で追加」から始めてください。<br>実際のPLYを読み込んだ場合、候補が自動生成されることはありません。</p></div>
+      <div id="item-list" class="scan-item-list"></div>
+      <p id="inventory-sample-note" class="scan-micro" hidden>サンプルの「確認済み」は操作説明用の設定です。実際の調査者による確認記録ではありません。</p>
+    </section>
+    <section class="scan-preparation" id="scan-preparation" aria-labelledby="preparation-title"><div class="scan-section-heading"><div><p class="scan-kicker">03 / PREPARE</p><h2 id="preparation-title">次の使い手を探す準備。</h2><p>必要な数量だけを準備し、残りの数量も見失わない。</p></div><span class="scan-small-tag">出品予定</span></div>
+      <div class="scan-prep-layout"><div class="scan-selection-panel"><div class="scan-selection-head"><h3>準備する品目</h3><span id="selected-count">0品目を選択中</span></div><div id="selected-items"><p class="scan-muted">リストから、確認済みの品目を選んでください。</p></div><p id="owner-warning" class="scan-owner-warning" hidden>所有者の把握が必要です。「案件情報を設定」で確認してください。</p><div class="scan-preview-consent"><p>この画面はデモです。選択した情報のブラウザー内プレビューを作成します。実際の掲載・同意取得・所有権移転は行いません。</p><button id="prepare-items" class="scan-btn scan-btn-primary" type="button" disabled>次の使い手を探す（プレビュー） <span aria-hidden="true">→</span></button></div></div><div class="scan-prep-explain"><span class="scan-prep-number">100<span>→</span>10<span>+</span>90</span><h3>100脚のうち、10脚から。</h3><p>一部を先に準備し、残りはあとから追加できます。同じ品目は一つの出品プレビューにまとまります。</p><ul><li>範囲・概数・一式は、原文のまま全量を準備。</li><li>内容を直すと、その品目は再確認へ。</li><li>危険・ゴミ・再利用に迷うものは準備対象外。</li></ul></div></div>
+      <div id="prepared-panel" class="scan-prepared-panel" hidden><div class="scan-prepared-heading"><div><span class="scan-check-mark" aria-hidden="true">✓</span><h3>出品プレビューを作成しました</h3></div><p>このブラウザー内に保存されています。ほかの訪問者には表示されません。</p></div><div id="prepared-items" class="scan-prepared-list"></div><div class="scan-export-actions"><a id="open-market" class="scan-btn scan-btn-dark" href="../market/?prepared=1">マーケットで見てみる <span aria-hidden="true">↗</span></a><button id="export-csv" class="scan-btn scan-btn-outline" type="button">CSVを保存 ↓</button><button id="export-json" class="scan-btn scan-btn-outline" type="button">JSONを保存 ↓</button></div><p class="scan-micro">保存ファイルは公開項目だけを含む、デモ用の一覧です。PC版ScanDeskへの取込形式は未接続です。</p></div>
+    </section>
+    <footer class="scan-footer"><p>建築資源循環ラボ · Scan Desk 公開プロトタイプ</p><div><a href="../#contact">実際のプロジェクトを相談する ↗</a><a href="../privacy/">プライバシーポリシー</a></div></footer>
+  </div>
+</main>
+<dialog id="project-dialog" class="scan-dialog" aria-labelledby="project-dialog-title"><form id="project-form"><div class="scan-dialog-heading"><div><p class="scan-kicker">PROJECT</p><h2 id="project-dialog-title">案件情報を設定</h2></div><button type="button" class="scan-close" data-close="project-dialog" aria-label="案件情報を閉じる">×</button></div><p class="scan-dialog-intro">個人名・会社名・詳しい住所は、この公開体験では入力しません。</p><label class="scan-field">案件名<input id="project-title-input" maxlength="100" required placeholder="例：オフィス移転プロジェクト"></label><label class="scan-field">公開する地域<select id="project-region-input" required></select></label><label class="scan-field">撮影元<select id="project-device-input"><option value="K2（主調査）">K2（主調査）</option><option value="iPhone（補助調査）">iPhone（補助調査）</option><option value="その他・手入力">その他・手入力</option></select></label><label class="scan-check-field"><input id="project-owner-input" type="checkbox"><span>対象品の所有者を把握している<small>正式な掲載承諾の取得は、本番の運用で別途必要です。</small></span></label><div class="scan-dialog-actions"><button class="scan-btn scan-btn-primary" type="submit">案件情報を保存</button><button class="scan-btn scan-btn-outline" type="button" data-close="project-dialog">戻る</button></div></form></dialog>
+<dialog id="item-dialog" class="scan-dialog scan-editor-dialog" aria-labelledby="item-dialog-title"><form id="item-form"><div class="scan-dialog-heading"><div><p class="scan-kicker">REVIEW RESOURCE</p><h2 id="item-dialog-title">品目を確認する</h2></div><button type="button" class="scan-close" data-close="item-dialog" aria-label="品目の編集を閉じる">×</button></div><p id="item-edit-note" class="scan-dialog-intro">分からない情報は、推測で埋めずに「未確認」のまま残せます。</p><input id="item-id" type="hidden"><div class="scan-form-grid"><label class="scan-field scan-full">品目名<input id="item-name" required maxlength="100" placeholder="例：オフィスチェア"></label><label class="scan-field">カテゴリー<select id="item-category"><option>什器</option><option>建材</option><option>設備</option><option>その他</option></select></label><label class="scan-field">数量（単位込み）<input id="item-quantity" required maxlength="80" placeholder="例：100脚、10〜20枚、1式"></label><label class="scan-field">出品時期<input id="item-timing" maxlength="80" placeholder="例：12月ごろ、春ごろ、未定"></label><label class="scan-field">状態<select id="item-condition"><option>未確認</option><option>使用感あり</option><option>良好（人が確認）</option><option>傷・不具合あり</option></select></label><label class="scan-field scan-full">寸法（幅 × 奥行 × 高さ／mm）<input id="item-dimensions" maxlength="120" placeholder="例：幅600 × 奥行600 × 高さ900 mm／未確認"></label><label class="scan-field scan-full">出品者メモ<textarea id="item-note" rows="3" maxlength="500" placeholder="状態・搬出条件など。個人情報や詳しい住所は入力しないでください。"></textarea></label></div><div class="scan-review-checks"><label class="scan-check-field"><input id="item-reviewed" type="checkbox"><span>人が品目と数量を確認<small>実際の案件では、調査・撮影した人が最初に確認します。</small></span></label><label class="scan-field">再利用に向けた確認<select id="item-safety"><option value="unconfirmed">未確認</option><option value="reusable">再利用可能と判断（人の確認）</option><option value="unsafe">危険・明らかなゴミ</option><option value="uncertain">再利用できるか迷う</option></select></label></div><p class="scan-micro">この選択は人の判断を記録するものです。AIによる危険物判定ではありません。</p><p id="item-form-error" class="scan-form-error" role="alert" hidden></p><div class="scan-dialog-actions"><button class="scan-btn scan-btn-primary" type="submit">内容を保存</button><button class="scan-btn scan-btn-outline" type="button" data-close="item-dialog">戻る</button></div></form></dialog>
+<dialog id="replace-dialog" class="scan-dialog scan-small-dialog" aria-labelledby="replace-title"><div class="scan-dialog-heading"><h2 id="replace-title">新しいデータで始めますか？</h2><button class="scan-close" type="button" data-close="replace-dialog" aria-label="閉じる">×</button></div><p>現在のリストと、このブラウザーに保存した出品プレビューをリセットします。必要なデータは先にCSV・JSONで保存してください。</p><div class="scan-dialog-actions"><button id="confirm-replace" class="scan-btn scan-btn-primary" type="button">リセットして始める</button><button class="scan-btn scan-btn-outline" type="button" data-close="replace-dialog">戻る</button></div></dialog>
+<noscript><div class="scan-noscript">この操作画面にはJavaScriptが必要です。<a href="../market/">マーケットへ戻る</a></div></noscript>
+<script src="scan-core.js"></script>
+<script src="scan.js"></script>
+</body>
+</html>

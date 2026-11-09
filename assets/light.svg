@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+<title id="title">LEDベースライト｜サンプルイラスト</title><desc id="desc">細いワイヤーで吊られたアルミ色の長方形LED照明器具。架空の掲載例を表すイラストで、実物の商品写真ではありません。</desc>
+<defs>
+<radialGradient id="paper" cx="48%" cy="35%" r="76%"><stop stop-color="#fffdf7" stop-opacity=".58"/><stop offset="1" stop-color="#eeeee6"/></radialGradient>
+<filter id="shadow" x="-50%" y="-150%" width="200%" height="400%"><feGaussianBlur stdDeviation="11"/></filter>
+<linearGradient id="metal" x1="0" x2="1" y1="0" y2=".4"><stop stop-color="#34444e"/><stop offset=".45" stop-color="#65717a"/><stop offset=".6" stop-color="#35434c"/><stop offset="1" stop-color="#202e36"/></linearGradient>
+
+<linearGradient id="body" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#afb8bd"/><stop offset=".45" stop-color="#f0f0e9"/><stop offset="1" stop-color="#a7b0b4"/></linearGradient>
+<linearGradient id="diffuser" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#fffdf4"/><stop offset="1" stop-color="#e6e3c7"/></linearGradient>
+<filter id="glow" x="-30%" y="-100%" width="160%" height="300%"><feGaussianBlur stdDeviation="18"/></filter></defs>
+<path fill="#eeeee6" d="M0 0h640v480H0z"/><path fill="url(#paper)" d="M0 0h640v480H0z"/>
+<g stroke-linejoin="round" stroke-linecap="round">
+<ellipse cx="322" cy="342" rx="173" ry="28" fill="#505957" opacity=".08" filter="url(#shadow)"/>
+<ellipse cx="318" cy="283" rx="166" ry="28" fill="#fffbe5" opacity=".8" filter="url(#glow)" transform="rotate(-14 318 283)"/>
+<!-- Suspension wires are intentionally light so the fitting remains the focus. -->
+<path d="M212 66v133M411 40v104" stroke="#7e8b8e" stroke-width="1.7"/>
+<path d="M209 69h6m193-26h6" stroke="#425762" stroke-width="4"/>
+<path d="m206 196 6-4 10 4-6 5Z" fill="#687e86"/>
+<path d="m404 141 7-4 10 4-7 5Z" fill="#687e86"/>
+<!-- Brushed metal body and continuous luminous diffuser. -->
+<path d="m131 222 289-83 60 35v21l-289 85-60-35Z" fill="#9ca8ad" stroke="#71838a" stroke-width="1.5"/>
+<path d="m131 222 289-83 60 35-289 85Z" fill="url(#body)" stroke="#8a9ba0" stroke-width="1.5"/>
+<path d="m141 224 279-80 50 29-279 81Z" fill="#e1e5e2" stroke="#b7c2c2" stroke-width="1"/>
+<path d="m153 224 269-77 35 21-267 80Z" fill="#c7d0d0"/>
+<path d="m131 222 60 37v21l-60-35Z" fill="#a8b3b6" stroke="#7b8e96" stroke-width="1.2"/>
+<path d="m191 259 289-85v21l-289 85Z" fill="#7b9099" stroke="#657f89" stroke-width="1.2"/>
+<path d="m199 262 272-80v11l-272 80Z" fill="url(#diffuser)" stroke="#eeeede" stroke-width=".7"/>
+<path d="m138 230 45 27v11l-45-27Z" fill="#eff0e2"/>
+<path d="m198 275 274-81" stroke="#fff9df" stroke-width="1.5"/>
+<path d="m146 226 45 27 281-81" fill="none" stroke="#fafff8" stroke-width="1.6"/>
+<circle cx="149" cy="245" r="1.8" fill="#617780"/><circle cx="174" cy="260" r="1.8" fill="#617780"/>
+<path d="m213 198 3 10m198-65 2 10" stroke="#4f6772" stroke-width="2"/>
+</g>
+</svg>

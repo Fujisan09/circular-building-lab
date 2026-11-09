@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+<title id="title">オーク天板のミーティングテーブル｜サンプルイラスト</title><desc id="desc">木目のあるオーク色の天板と黒いスチール脚のミーティングテーブル。架空の掲載例を表すイラストで、実物の商品写真ではありません。</desc>
+<defs>
+<radialGradient id="paper" cx="48%" cy="35%" r="76%"><stop stop-color="#fffdf7" stop-opacity=".58"/><stop offset="1" stop-color="#eeeae0"/></radialGradient>
+<filter id="shadow" x="-50%" y="-150%" width="200%" height="400%"><feGaussianBlur stdDeviation="11"/></filter>
+<linearGradient id="metal" x1="0" x2="1" y1="0" y2=".4"><stop stop-color="#34444e"/><stop offset=".45" stop-color="#65717a"/><stop offset=".6" stop-color="#35434c"/><stop offset="1" stop-color="#202e36"/></linearGradient>
+
+<linearGradient id="oak" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#dfc79c"/><stop offset=".45" stop-color="#e9d4ac"/><stop offset="1" stop-color="#c8a777"/></linearGradient>
+<clipPath id="topclip"><path d="m154 188 222-67 139 80-222 73Z"/></clipPath>
+<pattern id="grain" width="45" height="26" patternUnits="userSpaceOnUse" patternTransform="rotate(-17)"><path d="M0 7q15-5 45 0M0 21q20 3 45-2" fill="none" stroke="#9f7a4e" stroke-width="1" opacity=".22"/></pattern></defs>
+<path fill="#eeeae0" d="M0 0h640v480H0z"/><path fill="url(#paper)" d="M0 0h640v480H0z"/>
+<g stroke-linejoin="round" stroke-linecap="round">
+<ellipse cx="330" cy="370" rx="174" ry="30" fill="#463b2f" opacity=".11" filter="url(#shadow)"/>
+<!-- Powder-coated steel trestles. -->
+<g fill="url(#metal)" stroke="#34404a" stroke-width="1.5">
+<path d="m364 142 12-4-8 160-11 5Z"/>
+<path d="m491 212 12-4-4 144-12 4Z"/>
+<path d="m357 288 142 46v16l-142-47Z"/>
+<path d="m174 201 12 4-7 139-13-5Z"/>
+<path d="m299 270 13-4-8 137-13-4Z"/>
+<path d="m166 327 138 57v17l-138-59Z"/>
+<path d="m181 218 187-60v13l-188 62Z"/>
+<path d="m300 278 197-65v13l-197 65Z"/>
+</g>
+<path d="m174 209-6 122m132-55-7 113m199-169-4 119" stroke="#7f8990" opacity=".65" stroke-width="1.2"/>
+<!-- Natural oak tabletop with a chamfered edge. -->
+<path d="m154 188 139 86v13l-139-84Z" fill="#b89561" stroke="#b18f61" stroke-width="1.4"/>
+<path d="m293 274 222-73v13l-222 73Z" fill="#c4a476" stroke="#b18f61" stroke-width="1.4"/>
+<path d="m154 188 222-67 139 80-222 73Z" fill="url(#oak)" stroke="#b99a6f" stroke-width="1.4"/>
+<g clip-path="url(#topclip)"><path d="M132 112h414v176H132z" fill="url(#grain)"/>
+<path d="m152 203 235-71m-226 81 241-73m-219 88 235-73m-218 86 235-72m-217 84 236-72" fill="none" stroke="#fff2d0" stroke-width="1.5" opacity=".38"/>
+</g>
+<path d="m159 189 134 81 215-70" fill="none" stroke="#f7e6c6" stroke-width="2"/>
+<path d="m293 274v9" stroke="#9b794e" stroke-width="1"/>
+<path d="m164 343 13 6m114 53 13 4m183-47 13-5" stroke="#242e36" stroke-width="4"/>
+</g>
+</svg>

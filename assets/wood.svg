@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+<title id="title">リユース木材｜サンプルイラスト</title><desc id="desc">木目や節、釘跡を残した再利用用の木板を三段に積み重ねた素材見本。架空の掲載例を表すイラストで、実物の商品写真ではありません。</desc>
+<defs>
+<radialGradient id="paper" cx="48%" cy="35%" r="76%"><stop stop-color="#fffdf7" stop-opacity=".58"/><stop offset="1" stop-color="#ede7dd"/></radialGradient>
+<filter id="shadow" x="-50%" y="-150%" width="200%" height="400%"><feGaussianBlur stdDeviation="11"/></filter>
+<linearGradient id="metal" x1="0" x2="1" y1="0" y2=".4"><stop stop-color="#34444e"/><stop offset=".45" stop-color="#65717a"/><stop offset=".6" stop-color="#35434c"/><stop offset="1" stop-color="#202e36"/></linearGradient>
+
+<linearGradient id="timber" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#d8b385"/><stop offset=".5" stop-color="#bd8b58"/><stop offset="1" stop-color="#dfbd8f"/></linearGradient>
+<linearGradient id="cut" x1="0" x2="1"><stop stop-color="#d8b78b"/><stop offset="1" stop-color="#b08355"/></linearGradient>
+<pattern id="woodgrain" width="97" height="28" patternUnits="userSpaceOnUse" patternTransform="rotate(-16)"><path d="M-10 5q26 11 57 1t60 1M-10 17q34-8 68 0t48-3M-10 23q30 5 46 0t65 2" fill="none" stroke="#855a35" stroke-width="1" opacity=".22"/></pattern>
+<clipPath id="woodclip"><path d="m130 227 277-83 109 64-277 87Z"/></clipPath></defs>
+<path fill="#ede7dd" d="M0 0h640v480H0z"/><path fill="url(#paper)" d="M0 0h640v480H0z"/>
+<g stroke-linejoin="round" stroke-linecap="round">
+<ellipse cx="324" cy="357" rx="189" ry="26" fill="#483424" opacity=".12" filter="url(#shadow)"/>
+<!-- Reclaimed boards with staggered ends and varied grain. -->
+<path d="m116 281 280-85 114 66v20l-280 88-114-68Z" fill="#a87544" stroke="#966a40" stroke-width="1.4"/>
+<path d="m116 281 280-85 114 66-280 88Z" fill="#c09567" stroke="#a27a4f" stroke-width="1.3"/>
+<path d="m116 281 114 69v20l-114-68Z" fill="url(#cut)"/>
+<path d="m230 350 280-88v20l-280 88Z" fill="#977044"/>
+<path d="m138 255 278-85 108 64v20l-278 88-108-66Z" fill="#b18452" stroke="#a27b4f" stroke-width="1.3"/>
+<path d="m138 255 278-85 108 64-278 88Z" fill="#d0aa7b" stroke="#ae895b" stroke-width="1.3"/>
+<path d="m246 322 278-88v20l-278 88Z" fill="#ac8150"/>
+<path d="m130 227 277-83 109 64v21l-277 87-109-66Z" fill="url(#cut)" stroke="#a17c52" stroke-width="1.4"/>
+<path d="m130 227 277-83 109 64-277 87Z" fill="url(#timber)" stroke="#ac8457" stroke-width="1.4"/>
+<path d="m130 227 277-83 109 64-277 87Z" fill="url(#woodgrain)"/>
+<g clip-path="url(#woodclip)">
+<path d="m163 248 282-85m-248 106 282-85" stroke="#855c35" stroke-width="3"/>
+<path d="m168 250 280-85m-246 107 280-85" stroke="#efd0a2" stroke-width="1.3"/>
+<ellipse cx="350" cy="193" rx="19" ry="4.5" fill="none" stroke="#8b613b" stroke-width="1.1" transform="rotate(-17 350 193)" opacity=".65"/>
+<ellipse cx="350" cy="193" rx="10" ry="2.3" fill="#946b43" transform="rotate(-17 350 193)" opacity=".6"/>
+<path d="m212 257 59-18m115-42 53-16m-189 91 80-26" stroke="#f0c99b" stroke-width="2" opacity=".5"/>
+</g>
+<path d="m239 295 277-87v21l-277 87Z" fill="#b88a55" stroke="#a27c50" stroke-width="1.2"/>
+<path d="m135 229 104 62 273-83" fill="none" stroke="#efd1a8" stroke-width="1.6"/>
+<path d="m166 251 0 18m37 4v19m-50-29 33 20m-44 9 72 42m31-32 269-84m-269 111 268-85m-284 112 271-85" stroke="#835f3b" stroke-width="1" opacity=".55"/>
+<g fill="#5b5246" opacity=".78"><ellipse cx="175" cy="223" rx="2.6" ry="1.7" transform="rotate(-17 175 223)"/><ellipse cx="217" cy="247" rx="2.6" ry="1.7" transform="rotate(-17 217 247)"/><ellipse cx="432" cy="166" rx="2.6" ry="1.7" transform="rotate(-17 432 166)"/><ellipse cx="470" cy="189" rx="2.6" ry="1.7" transform="rotate(-17 470 189)"/></g>
+</g>
+</svg>

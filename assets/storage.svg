@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" role="img" aria-labelledby="title desc">
+<title id="title">スチール収納キャビネット｜サンプルイラスト</title><desc id="desc">淡いグレーの両開き扉、縦長の取手と通気スリットを備えたスチール収納庫。架空の掲載例を表すイラストで、実物の商品写真ではありません。</desc>
+<defs>
+<radialGradient id="paper" cx="48%" cy="35%" r="76%"><stop stop-color="#fffdf7" stop-opacity=".58"/><stop offset="1" stop-color="#e8edeb"/></radialGradient>
+<filter id="shadow" x="-50%" y="-150%" width="200%" height="400%"><feGaussianBlur stdDeviation="11"/></filter>
+<linearGradient id="metal" x1="0" x2="1" y1="0" y2=".4"><stop stop-color="#34444e"/><stop offset=".45" stop-color="#65717a"/><stop offset=".6" stop-color="#35434c"/><stop offset="1" stop-color="#202e36"/></linearGradient>
+
+<linearGradient id="cabinet" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#c5cdcb"/><stop offset="1" stop-color="#899c9e"/></linearGradient>
+<linearGradient id="side" x1="0" x2="1"><stop stop-color="#7d9197"/><stop offset="1" stop-color="#aab8b8"/></linearGradient></defs>
+<path fill="#e8edeb" d="M0 0h640v480H0z"/><path fill="url(#paper)" d="M0 0h640v480H0z"/>
+<g stroke-linejoin="round" stroke-linecap="round">
+<ellipse cx="324" cy="392" rx="147" ry="21" fill="#314650" opacity=".13" filter="url(#shadow)"/>
+<!-- A freestanding steel storage cabinet, two doors and a deep side panel. -->
+<path d="m180 135 109-48 167 42-109 49Z" fill="#d7deda" stroke="#748d94" stroke-width="1.5"/>
+<path d="m347 178 109-49v215l-109 49Z" fill="url(#side)" stroke="#6f8790" stroke-width="1.5"/>
+<path d="m180 135 167 43v215l-167-47Z" fill="url(#cabinet)" stroke="#748d94" stroke-width="1.5"/>
+<path d="m189 148 149 39v187l-149-42Z" fill="#b7c3c2" stroke="#82999e" stroke-width="1.2"/>
+<path d="m194 154 66 17v179l-66-18Z" fill="#c6ceca" stroke="#879da0" stroke-width="1.2"/>
+<path d="m265 172 68 18v178l-68-18Z" fill="#bcc7c4" stroke="#879da0" stroke-width="1.2"/>
+<path d="m196 156 62 16v174m9-171 62 16v174" fill="none" stroke="#e3e7df" stroke-width="1.1"/>
+<path d="m357 189 88-40v185l-88 40Z" fill="none" stroke="#96a9ad" stroke-width="1"/>
+<!-- Inset handles, lock and vents. -->
+<path d="m245 231 7 2v31l-7-2Z" fill="#657e87" stroke="#4f6974" stroke-width="1"/>
+<path d="m274 239 7 2v31l-7-2Z" fill="#657e87" stroke="#4f6974" stroke-width="1"/>
+<path d="m247 235 3 1v23m26-16 3 1v23" stroke="#dce4df" stroke-width="1.1"/>
+<ellipse cx="277.5" cy="280" rx="2.1" ry="2.6" fill="#536c79"/>
+<g stroke="#71898f" stroke-width="1.5">
+<path d="m206 302 38 10m-38-4 38 10m-38-4 38 10m43-10 32 9m-32-3 32 9m-32-3 32 9"/>
+</g>
+<path d="m185 345 159 44 105-47v8l-105 48-159-44Z" fill="#617d86" stroke="#536f7b" stroke-width="1.2"/>
+<path d="m191 355 12 3v10l-12-3Zm138 39 12 3v10l-12-3Zm105-43 12-6v10l-12 6Z" fill="#394f5a"/>
+<path d="m185 135 162 40 103-46" fill="none" stroke="#f3f3e8" stroke-width="1.5"/>
+<path d="m203 162 21 6v8l-21-6Z" fill="#b5c0bc" stroke="#94a6a4" stroke-width=".8"/>
+</g>
+</svg>
