@@ -10,7 +10,7 @@
   <meta property="og:locale" content="ja_JP">
   <meta property="og:site_name" content="建築資源循環ラボ">
   <meta property="og:title" content="資源をつなぐマーケット｜つぎの建築に、いい出会いを。">
-  <meta property="og:description" content="建材・什器・設備の次の使い手を、撤去の前から探す。資源を探すところからスキャン・出品準備までを体験できる公開プロトタイプです。">
+  <meta property="og:description" content="建材・什器・設備の次の使い手を、撤去の前から探す。資源を探し、活用を相談する流れを体験できる公開プロトタイプです。">
   <link rel="stylesheet" href="../assets/base.css">
   <link rel="stylesheet" href="market.css">
   <script src="market.js" defer></script>
@@ -34,7 +34,7 @@
       <nav class="primary-nav" aria-label="メインナビゲーション">
         <a href="../">ラボについて</a>
         <a href="./" aria-current="page">資源を探す</a>
-        <a class="nav-cta" href="../scan/">スキャンから出品準備 <span aria-hidden="true">↗</span></a>
+        <a class="nav-cta" href="../#contact">撮影・調査を相談 <span aria-hidden="true">↗</span></a>
       </nav>
     </div>
   </header>
@@ -50,7 +50,7 @@
           <h1 id="market-title">つぎの建築に、<br><span>いい出会いを。</span></h1>
           <p class="mkt-hero-lead">その場所での役目を終えても、<br>ものの価値は、まだ続いている。</p>
           <p class="mkt-hero-description">建材・什器・設備の「出品予定」を、撤去の前から。<br class="mkt-wide-br">必要な数、使いたい時期、引き渡しの条件から、次の使い道を探します。</p>
-          <div class="mkt-hero-actions"><a class="button" href="#resources">資源を探す <span aria-hidden="true">↓</span></a><a class="mkt-text-link" href="../scan/">PLYデータから読み込み <span aria-hidden="true">↗</span></a></div>
+          <div class="mkt-hero-actions"><a class="button" href="#resources">資源を探す <span aria-hidden="true">↓</span></a><a class="mkt-text-link" href="../#contact">撮影・調査を相談する <span aria-hidden="true">↗</span></a></div>
         </div>
         <div class="mkt-showcase" aria-hidden="true">
           <div class="mkt-showcase-top"><span>FROM ONE PLACE<br>TO THE NEXT.</span><span class="mkt-showcase-orbit">↗</span></div>
@@ -66,7 +66,7 @@
     <section class="mkt-resources" id="resources" aria-labelledby="resources-title">
       <div class="container">
         <div class="mkt-section-heading"><div><p class="eyebrow">FIND YOUR NEXT RESOURCE</p><h2 id="resources-title">次の使い手を待つ資源</h2></div><p>出品予定の段階から、<br>活用の可能性をつなぐ。</p></div>
-        <div class="mkt-local-note" id="prepared-notice" role="status" tabindex="-1" hidden><strong>出品プレビューについて</strong><p>このブラウザーに出品プレビューが見つかりません。<a href="../scan/">スキャン画面</a>で出品準備を作成してください。</p></div>
+
         <div class="mkt-searchbar">
           <label class="mkt-search"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="m15.5 15.5 5 5" stroke="currentColor" stroke-width="1.6"/></svg><span class="sr-only">品目名・素材・キーワードで検索</span><input id="resource-search" type="search" placeholder="品目名・素材・キーワードで探す" autocomplete="off"></label>
           <label class="mkt-region"><span>エリア</span><select id="region-filter" aria-label="エリアで絞り込む"><option value="all">すべての地域</option><option value="関東">関東</option><option value="関西">関西</option><option value="中部">中部</option></select></label>
@@ -80,17 +80,11 @@
       </div>
     </section>
 
-    <section class="mkt-local-section" id="local-section" hidden aria-labelledby="local-title">
-      <div class="container">
-        <div class="mkt-section-heading"><div><p class="eyebrow">YOUR LOCAL PREVIEW</p><h2 id="local-title" tabindex="-1">このブラウザーの出品プレビュー</h2></div><a class="mkt-text-link" href="../scan/">出品準備に戻る <span aria-hidden="true">↗</span></a></div>
-        <div class="mkt-local-note"><strong>自分だけのプレビュー</strong><p>スキャン画面で準備した情報を、このブラウザー内で表示しています。他の利用者への公開・外部送信はしていません。</p></div>
-        <div id="local-grid" class="mkt-grid"></div>
-      </div>
-    </section>
+
 
     <section class="mkt-how" aria-labelledby="how-title"><div class="container"><div class="mkt-section-heading"><div><p class="eyebrow">HOW IT CONNECTS</p><h2 id="how-title">「使いたい」を、具体的に。</h2></div><p>情報をそろえ、条件をすり合わせて、<br>無理のないリユースにつなげます。</p></div><div class="mkt-how-grid"><article><span>01 / DISCOVER</span><h3>気になる資源を見つける</h3><p>品目・数量・地域・出品時期から検索。気になるものは保存して、あとから比較できます。</p></article><article><span>02 / ASK</span><h3>知りたいことを相談する</h3><p>写真、詳しい情報、場所・搬出条件、数量・利用方法。必要な情報を確認していきます。</p></article><article><span>03 / CONNECT</span><h3>引き継ぐ条件を整える</h3><p>実際の取引では、状態や数量、取り外し・搬出・運搬の役割と費用を個別に調整します。</p></article></div><p class="mkt-how-note">この公開版では「探す・保存する・相談文を作る」までを体験できます。購入・予約・在庫確保は行いません。</p></div></section>
 
-    <section class="mkt-scan-cta" aria-labelledby="scan-cta-title"><div class="container mkt-scan-cta-grid"><div><p class="eyebrow">FROM SCAN TO NEXT USE</p><h2 id="scan-cta-title">建物の中の資源を、<br>次の使い手へ。</h2><p>スキャンデータから品目・数量・寸法を整理。<br>人の確認を経て、出品準備へつなげる流れを体験できます。</p><a class="button" href="../scan/">PLYデータから読み込み <span aria-hidden="true">↗</span></a><span class="mkt-scan-small">サンプルで体験できます</span></div><div class="mkt-scan-process" aria-label="スキャンから出品準備の流れ"><div><span>01</span><strong>データを読み込む</strong><small>PLY / ScanDesk</small></div><span class="mkt-process-arrow" aria-hidden="true">↓</span><div><span>02</span><strong>品目と数量を確認する</strong><small>調査者・お客様の確認</small></div><span class="mkt-process-arrow" aria-hidden="true">↓</span><div><span>03</span><strong>次の使い手を探す</strong><small>出品予定・公開範囲の確認</small></div></div></div></section>
+    <section class="mkt-scan-cta" aria-labelledby="scan-cta-title"><div class="container mkt-scan-cta-grid"><div><p class="eyebrow">撮影からリユースへ</p><h2 id="scan-cta-title">資材のこと、<br>まずはご相談ください。</h2><p>資料や資材リストがなくても大丈夫です。<br>現地の撮影・調査から、次の使い手探しまで伴走します。</p><a class="button" href="../#contact">撮影・調査を相談する <span aria-hidden="true">↗</span></a></div><div class="mkt-scan-process" aria-label="ご相談からリユースの流れ"><div><span>01</span><strong>現地で撮影・調査</strong><small>建物の場所と予定時期から</small></div><span class="mkt-process-arrow" aria-hidden="true">↓</span><div><span>02</span><strong>資材の情報を整理</strong><small>品目・数量・状態を確認</small></div><span class="mkt-process-arrow" aria-hidden="true">↓</span><div><span>03</span><strong>次の使い手へつなぐ</strong><small>所有者の承認と条件の整理</small></div></div></div></section>
   </main>
 
   <footer class="site-footer"><div class="container mkt-footer-inner"><div><a class="mkt-footer-brand" href="../">建築資源循環ラボ</a><p>Circular Building Resources Lab</p></div><nav aria-label="フッターナビゲーション"><a href="../">ラボについて</a><a href="../#contact">実際の案件を相談する</a><a href="../privacy/">プライバシーポリシー</a></nav><p class="mkt-footer-note">個人による独立した社会実装プロジェクトです。所属企業の公式活動ではありません。</p><small>© 建築資源循環ラボ</small></div></footer>
@@ -103,3 +97,4 @@
   <div class="mkt-toast" id="market-toast" role="status" hidden></div>
 </body>
 </html>
+

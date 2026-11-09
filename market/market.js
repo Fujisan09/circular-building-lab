@@ -2,7 +2,6 @@
 (() => {
   'use strict';
   const FAVORITES_KEY = 'cbrl-favorites-v1';
-  const PREPARED_KEY = 'cbrl-prepared-v1';
   const ASSETS = new Set(['chair.svg','desk.svg','carpet.svg','glass.svg','light.svg','wood.svg','storage.svg','door.svg']);
   const listings = [
     {id:'CBR-S001',name:'オフィスチェア',category:'什器',region:'東京都港区',area:'関東',quantity:'100脚',timing:'12月ごろ',dimensions:'幅 600 × 奥行 600 × 高さ 900 mm（サンプル設定）',condition:'使用感あり。座面やキャスターの状態は、個別確認を想定。',removal:'オフィス移転に伴う搬出。エレベーター利用・作業日時・車両条件は個別相談。',note:'まとまった数量から、一部だけの利用まで相談するイメージです。色や状態の差は確認してから調整します。',intro:'毎日の仕事を支えてきた椅子を、次のワークプレイスへ。',price:'条件を相談',image:'chair.svg',keywords:'椅子 チェア いす オフィス メッシュ キャスター 家具 黒 ブラック'},
@@ -23,30 +22,7 @@
   const normalize = (value) => String(value).normalize('NFKC').toLocaleLowerCase('ja');
 
   function readJson(key) { try { const raw = localStorage.getItem(key); return raw && raw.length <= 1000000 ? JSON.parse(raw) : null; } catch { return null; } }
-  function approximateRegion(value) {
-    const text = safeText(value,'',100);
-    const match = text.match(/(東京都|北海道|大阪府|京都府|[一-龥]{2,3}県)([一-龥ぁ-んァ-ヶー]{1,12}?[市区郡])?/);
-    return match ? match[0] : '公開地域を要確認';
-  }
-  function readPrepared() {
-    const envelope = readJson(PREPARED_KEY);
-    if (!envelope || envelope.version !== 1 || !Array.isArray(envelope.items)) return [];
-    const unique = new Set();
-    return envelope.items.slice(0,100).flatMap((item,index) => {
-      if (!item || typeof item !== 'object' || item.isDemo !== true || !['scan-demo','manual'].includes(item.source)) return [];
-      const baseId = safeText(item.id,`item-${index}`,80).replace(/[^a-zA-Z0-9_-]/g,'-');
-      const id = `LOCAL-${baseId}`;
-      if (unique.has(id)) return [];
-      unique.add(id);
-      const imageName = safeText(item.image,'',120).split('/').pop();
-      const categoryMap = new Map([['furniture','什器'],['material','建材'],['equipment','設備']]);
-      const category = categoryMap.get(item.category) || (['什器','建材','設備'].includes(item.category) ? item.category : 'その他');
-      return [{id,name:safeText(item.name,'名称未設定',80),category,region:approximateRegion(item.region),area:'local',quantity:safeText(item.quantity,'要確認',60),timing:safeText(item.timing,'未定',80),dimensions:safeText(item.dimensions,'要確認',200),condition:safeText(item.condition,'要確認',300),note:safeText(item.note,'出品準備画面で確認した情報の、ブラウザー内プレビューです。',600),removal:'搬出条件は、実際の出品前に確認してください。',intro:'このブラウザーで準備した情報です。他の利用者には公開されていません。',price:'条件を相談',image:ASSETS.has(imageName)?imageName:'chair.svg',local:true}];
-    });
-  }
-
-  let localListings = readPrepared();
-  let allListings = [...listings,...localListings];
+  const allListings = listings;
   const storedFavorites = readJson(FAVORITES_KEY);
   let favorites = new Set(Array.isArray(storedFavorites) ? storedFavorites.filter(id => typeof id === 'string' && id.length < 100 && allListings.some(item => item.id === id)).slice(0,108) : []);
   const initialParams = new URLSearchParams(location.search);
@@ -105,9 +81,6 @@
     $('#empty-message').textContent=state.saved && !listings.some(item=>favorites.has(item.id))?'カード右上の保存ボタンから、気になる資源を保存できます。':'検索キーワードや絞り込み条件を変えてみてください。';
     $$('[data-category]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.category===state.category)));
     $('#saved-filter').setAttribute('aria-pressed',String(state.saved));
-    const localVisible = state.saved ? localListings.filter(item=>favorites.has(item.id)) : localListings;
-    $('#local-section').hidden=localVisible.length===0;
-    $('#local-grid').replaceChildren(...localVisible.map(card));
     updateFavoriteControls();
   }
   function createDraft() {
@@ -153,21 +126,11 @@
   $$('[data-category]').forEach(button=>button.addEventListener('click',()=>{state.category=button.dataset.category;render();}));
   $('#reset-filters').addEventListener('click',()=>{state.category='all';state.region='all';state.query='';state.saved=false;$('#resource-search').value='';$('#region-filter').value='all';render();$('#resource-search').focus();});
   window.addEventListener('storage',event=>{
-    if(event.key===PREPARED_KEY){localListings=readPrepared();allListings=[...listings,...localListings];favorites=new Set([...favorites].filter(id=>allListings.some(item=>item.id===id)));render();}
     if(event.key===FAVORITES_KEY){const next=readJson(FAVORITES_KEY);favorites=new Set(Array.isArray(next)?next.filter(id=>allListings.some(item=>item.id===id)):[]);render();}
   });
   render();
   const itemAlias = initialParams.get('item');
   const linkedItem = listings.find(item=>item.id===itemAlias || item.image===`${itemAlias}.svg`);
   if(linkedItem) openDetail(linkedItem);
-  else if(initialParams.get('prepared')==='1') {
-    const hasPreview=localListings.length>0;
-    if(!hasPreview) $('#prepared-notice').hidden=false;
-    requestAnimationFrame(()=>{
-      const focusTarget=hasPreview?$('#local-title'):$('#prepared-notice');
-      const section=hasPreview?$('#local-section'):$('#resources');
-      focusTarget.focus({preventScroll:true});
-      section.scrollIntoView({behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
-    });
-  }
 })();
+
