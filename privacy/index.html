@@ -1,106 +1,50 @@
-<!DOCTYPE html>
-<html lang="ja" class="scroll-smooth">
+<!doctype html>
+<html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>個人情報の取り扱い | 建築資源循環ラボ</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: { DEFAULT: '#2d6a4f', light: '#40916c', dark: '#1b4332' },
-            accent: { DEFAULT: '#52b788', light: '#95d5b2' },
-            'surface-warm': '#f8faf5',
-            'eco-border': '#b7e4c7',
-            'text-muted': '#4a7c59',
-            'text-light': '#6b9080',
-            background: '#f0f7f0',
-          }
-        }
-      }
-    }
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f6f4ee">
+<title>個人情報の取り扱い | 建築資源循環ラボ</title>
+<meta name="description" content="建築資源循環ラボにおける個人情報の取り扱いについてご案内します。">
+
+<style>
+
+:root{--paper:#f6f4ee;--white:#fffefa;--ink:#202c2e;--muted:#586466;--blue:#3558a4;--line:#d7dbd8;--serif:"Yu Mincho","Hiragino Mincho ProN","Noto Serif CJK JP",serif;--sans:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.9;-webkit-font-smoothing:antialiased}a{color:inherit;text-underline-offset:5px}h1,h2,p{margin:0}svg{display:block}::selection{background:#d1dced}:focus-visible{outline:3px solid #a64e32;outline-offset:5px}.container{width:min(1280px,calc(100% - 112px));margin:auto}.skip-link{position:fixed;top:12px;left:12px;z-index:100;padding:10px 18px;background:var(--ink);color:white;transform:translateY(-160%)}.skip-link:focus{transform:translateY(0)}
+.site-header{position:fixed;inset:0 0 auto;z-index:40;border-bottom:1px solid var(--line);background:rgba(246,244,238,.97)}.header-inner{width:min(1440px,calc(100% - 80px));min-height:83px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:inline-flex;gap:12px;align-items:center;text-decoration:none}.brand-mark{width:34px;height:38px;color:var(--blue);flex-shrink:0}.brand-name{font-size:19px;font-weight:700;letter-spacing:.045em}.back-link{font-size:13px;color:var(--blue);text-decoration:none;min-height:44px;display:inline-flex;align-items:center;gap:12px}.back-link:hover{text-decoration:underline}
+.privacy-main{padding:150px 0 100px}.privacy-wrap{width:min(860px,calc(100% - 112px));margin:auto}.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:24px;color:var(--blue);font-size:12px;font-weight:700;letter-spacing:.15em;line-height:1.5}.eyebrow::before{content:"";width:24px;height:1px;background:currentColor}.privacy-heading{padding-bottom:38px;border-bottom:1px solid var(--line);margin-bottom:12px}.privacy-heading h1{font-family:var(--serif);font-size:clamp(30px,4vw,45px);font-weight:600;line-height:1.6}.privacy-section{padding:28px 0;border-bottom:1px solid var(--line)}.privacy-section h2{font-size:20px;margin-bottom:15px}.privacy-section p,.privacy-section li{font-size:15px;line-height:2.05;color:var(--muted)}.privacy-section ul{padding-left:25px;margin:12px 0 0}.privacy-section a{color:var(--blue)}.privacy-date{font-size:13px;color:var(--muted);margin:27px 0 35px}.button{display:inline-flex;align-items:center;justify-content:space-between;gap:30px;min-height:54px;padding:12px 23px;border:1px solid var(--blue);border-radius:2px;background:var(--blue);color:white;font-size:14px;text-decoration:none}.button:hover{background:#284582}.arrow{font-size:20px}
+.site-footer{padding:59px 0 28px;border-top:1px solid var(--line)}.footer-top{display:flex;align-items:flex-start;justify-content:space-between;gap:48px}.footer-brand{font-size:21px;font-weight:700;letter-spacing:.07em}.footer-en{font-size:10px;letter-spacing:.09em;color:var(--muted);margin-top:5px}.footer-nav{display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:flex-end}.footer-nav a{display:inline-block;min-height:38px;font-size:12px;text-decoration:none}.footer-nav a:hover{text-decoration:underline}.footer-note{max-width:900px;font-size:11px;line-height:1.9;color:var(--muted);margin-top:38px}.footer-bottom{display:flex;justify-content:space-between;gap:24px;align-items:center;margin-top:30px;padding-top:22px;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}.footer-bottom a{font-size:12px;text-decoration:none;min-height:36px;display:inline-flex;align-items:center;gap:15px}
+@media(max-width:760px){.container,.privacy-wrap{width:calc(100% - 40px)}.header-inner{width:calc(100% - 36px);min-height:70px;gap:15px}.brand{gap:7px}.brand-mark{width:26px;height:30px}.brand-name{font-size:14px;letter-spacing:.02em}.back-link{font-size:11px;gap:5px;white-space:nowrap}.privacy-main{padding:120px 0 65px}.privacy-heading h1{font-size:30px}.privacy-heading{padding-bottom:27px}.eyebrow{font-size:11px}.privacy-section h2{font-size:18px}.privacy-section p,.privacy-section li{font-size:14px}.site-footer{padding:42px 0 22px}.footer-top{display:block}.footer-brand{font-size:20px}.footer-en{font-size:9px}.footer-nav{justify-content:flex-start;gap:0 23px;margin-top:24px}.footer-note{margin-top:23px;font-size:10px}.footer-bottom{align-items:flex-start;font-size:9px;gap:13px;margin-top:23px}.footer-bottom a{font-size:10px;min-height:25px;gap:5px}}
+@media(max-width:380px){.brand-name{font-size:13px}.brand-mark{width:23px}.back-link{font-size:10px}.privacy-heading h1{font-size:27px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{.site-header,.skip-link,.button{display:none}.privacy-main{padding:0}.privacy-wrap,.container{width:100%}.privacy-section{break-inside:avoid}}
+</style>
 </head>
-<body class="min-h-screen flex flex-col bg-[#f0f7f0] text-gray-900 antialiased">
+<body id="top">
 
-  <!-- Header -->
-  <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur border-b border-eco-border">
-    <div class="mx-auto max-w-6xl flex items-center justify-between px-6 py-3">
-      <a href="/" class="flex items-center gap-2">
-        <span class="font-bold text-lg tracking-wide text-primary-dark">建築資源循環ラボ</span>
-      </a>
-    </div>
-  </header>
-
-  <div class="flex-1 pt-[52px]">
-    <main class="mx-auto max-w-3xl px-6 py-16">
-      <h1 class="text-2xl font-bold text-primary-dark mb-8">個人情報の取り扱いについて</h1>
-
-      <div class="space-y-8 text-sm text-text-muted leading-relaxed">
-        <section>
-          <h2 class="text-lg font-bold text-primary-dark mb-3">1. 個人情報の収集について</h2>
-          <p>建築資源循環ラボ（以下「当プロジェクト」）は、お問い合わせフォーム等を通じて、お名前、メールアドレス、会社名・所属、お問い合わせ内容等の個人情報をご提供いただく場合があります。</p>
-        </section>
-
-        <section>
-          <h2 class="text-lg font-bold text-primary-dark mb-3">2. 利用目的</h2>
-          <p>ご提供いただいた個人情報は、以下の目的で利用いたします。</p>
-          <ul class="list-disc pl-5 mt-2 space-y-1">
-            <li>お問い合わせへの回答・連絡</li>
-            <li>実証プロジェクトや活動に関するご案内</li>
-            <li>当プロジェクトの活動改善のための分析</li>
-          </ul>
-        </section>
-
-        <section>
-          <h2 class="text-lg font-bold text-primary-dark mb-3">3. 第三者提供</h2>
-          <p>法令に基づく場合を除き、ご本人の同意なく個人情報を第三者に提供することはありません。</p>
-        </section>
-
-        <section>
-          <h2 class="text-lg font-bold text-primary-dark mb-3">4. 個人情報の管理</h2>
-          <p>個人情報の漏洩、紛失、改ざん等を防止するため、適切な安全管理措置を講じます。</p>
-        </section>
-
-        <section>
-          <h2 class="text-lg font-bold text-primary-dark mb-3">5. 開示・訂正・削除</h2>
-          <p>ご本人から個人情報の開示、訂正、削除のご請求があった場合は、合理的な範囲で速やかに対応いたします。</p>
-        </section>
-
-        <section>
-          <h2 class="text-lg font-bold text-primary-dark mb-3">6. お問い合わせ</h2>
-          <p>個人情報の取り扱いに関するお問い合わせは、<a href="/" class="text-primary underline hover:text-primary-dark">トップページ</a>のお問い合わせフォームよりご連絡ください。</p>
-        </section>
-
-        <p class="text-xs text-text-light pt-4 border-t border-eco-border">
-          制定日：2026年5月15日<br>
-          建築資源循環ラボ
-        </p>
-      </div>
-    </main>
+<a class="skip-link" href="#main">本文へスキップ</a>
+<header class="site-header privacy-header">
+  <div class="header-inner">
+    <a class="brand" href="../"><svg class="brand-mark" viewBox="0 0 36 40" fill="none" aria-hidden="true"><path d="M3 11 18 2l15 9v18l-15 9L3 29V11Z" stroke="currentColor" stroke-width="1.5"/><path d="m3 11 15 9 15-9M18 20v18M10 15v10l8 5 8-5V15M10 7l16 9" stroke="currentColor" stroke-width="1.5"/></svg><span class="brand-name">建築資源循環ラボ</span></a>
+    <a class="back-link" href="../">← トップページへ</a>
   </div>
-
-  <!-- Footer -->
-  <footer class="bg-primary-dark text-white">
-    <div class="mx-auto max-w-6xl px-6 py-10">
-      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-6">
-        <div>
-          <p class="font-bold text-lg mb-1">建築資源循環ラボ</p>
-          <p class="text-sm text-accent-light">Circular Building Resources Lab</p>
-        </div>
-        <nav class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-accent-light">
-          <a href="/" class="hover:text-white transition-colors">Top</a>
-          <a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
-        </nav>
-      </div>
-      <div class="mt-8 pt-6 border-t border-white/20 text-xs text-accent-light/60 leading-relaxed">
-        <p>本活動は個人として準備している独立した社会実装プロジェクトです。所属企業の公式活動ではなく、所属企業の秘密情報・資産・ロゴ・データは使用していません。</p>
-        <p class="mt-3">&copy; 2026 建築資源循環ラボ / Circular Building Resources Lab</p>
-      </div>
-    </div>
-  </footer>
-
+</header>
+<main class="privacy-main" id="main"><div class="privacy-wrap"><div class="privacy-heading"><p class="eyebrow">Privacy Policy</p><h1>個人情報の取り扱いについて</h1></div>
+<section class="privacy-section" aria-labelledby="privacy-1"><h2 id="privacy-1">1. 個人情報の収集について</h2><p>建築資源循環ラボ（以下「当プロジェクト」）は、お問い合わせフォーム等を通じて、お名前、メールアドレス、会社名・所属、お問い合わせ内容等の個人情報をご提供いただく場合があります。</p></section>
+<section class="privacy-section" aria-labelledby="privacy-2"><h2 id="privacy-2">2. 利用目的</h2><p>ご提供いただいた個人情報は、以下の目的で利用いたします。</p><ul><li>お問い合わせへの回答・連絡</li><li>実証プロジェクトや活動に関するご案内</li><li>当プロジェクトの活動改善のための分析</li></ul></section>
+<section class="privacy-section" aria-labelledby="privacy-3"><h2 id="privacy-3">3. 第三者提供</h2><p>法令に基づく場合を除き、ご本人の同意なく個人情報を第三者に提供することはありません。</p></section>
+<section class="privacy-section" aria-labelledby="privacy-4"><h2 id="privacy-4">4. 個人情報の管理</h2><p>個人情報の漏洩、紛失、改ざん等を防止するため、適切な安全管理措置を講じます。</p></section>
+<section class="privacy-section" aria-labelledby="privacy-5"><h2 id="privacy-5">5. 開示・訂正・削除</h2><p>ご本人から個人情報の開示、訂正、削除のご請求があった場合は、合理的な範囲で速やかに対応いたします。</p></section>
+<section class="privacy-section" aria-labelledby="privacy-6"><h2 id="privacy-6">6. お問い合わせ</h2><p>個人情報の取り扱いに関するお問い合わせは、<a href="../#contact">トップページのお問い合わせフォーム</a>よりご連絡ください。</p></section>
+<p class="privacy-date">制定日：2026年5月15日</p>
+<a class="button " href="../">トップページへ戻る<span class="arrow" aria-hidden="true">↗</span></a>
+</div></main>
+<footer class="site-footer privacy-footer">
+  <div class="container">
+    <div class="footer-top"><div><p class="footer-brand">建築資源循環ラボ</p><p class="footer-en" lang="en">Circular Building Resources Lab</p></div><nav class="footer-nav" aria-label="フッターナビゲーション"><a href="../">Top</a><a href="./">Privacy Policy</a></nav></div>
+    <p class="footer-note">本活動は個人として準備している独立した社会実装プロジェクトです。所属企業の公式活動ではなく、所属企業の秘密情報・資産・ロゴ・データは使用していません。</p>
+    <div class="footer-bottom"><p>© 2026 建築資源循環ラボ / Circular Building Resources Lab</p><a href="../">Top <span aria-hidden="true">↑</span></a></div>
+  </div>
+</footer>
 </body>
 </html>
