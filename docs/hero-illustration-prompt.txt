@@ -1,0 +1,19 @@
+Hero illustration / 2026-11-10
+Generated with the built-in image generation tool.
+Final website asset: assets/circular-building-reuse.webp
+Original generated size: 1374 x 1145 px, transparent RGBA.
+Web delivery: WebP quality 82; illustration content unchanged during encoding.
+
+Use case: illustration-story
+Asset type: a refined editorial illustration for the hero of a Japanese architecture and building-resource reuse website. This is an illustration of a business idea, not a technical diagram. Create one completely new artwork.
+Primary request: clearly show an existing whole building giving up valuable resources that become choices for the design and procurement of a new building project.
+Composition: near-square landscape canvas, about 6:5. Three well-separated visual groups, broad calm negative space, no panels, no boxes, no dense infographic. The existing building occupies the upper-left half. A loosely arranged curated group of five rescued objects is upper right. A future construction project and its designers occupy the lower-right half. Two slender confident blue arrows carry the eye: from existing building to objects, then from objects down to the future project. The whole composition must remain readable at 550 pixels wide.
+Source building: show the WHOLE exterior of an elegant four-storey Japanese early-modern office building, a subtle combination of legacy architecture and ordinary commercial offices. Warm pale masonry, tall repeated windows, a restrained cornice and modest entrance, seen in oblique perspective. It is still standing, intact, awaiting renovation or dismantling; no rubble or active destruction. It must feel like a real building, not a tiny open room or a generic house.
+Rescued objects: exactly five unmistakable isolated items, simply and beautifully drawn with generous spacing — a solid wood office desk, one upholstered blue office chair, an antique brass pendant lamp with a milk-glass shade, one framed landscape painting, and a desktop computer monitor with keyboard. These objects should visually belong to different eras and show that the reuse scope is broad. Do not add text, price labels, packaging, extra duplicate furniture, or piles.
+Destination: a new multi-storey architectural project taking shape, with a simple clean structural frame and one restrained tower crane behind it, plus two architects in the foreground studying a large unfolded architectural blueprint on a drafting table. The drawing on their table should read as a building plan without legible writing. One architect gestures toward the new structure. Emphasize PLANNING and ADOPTION into a building project, not residential moving, charity, or personal shopping. Keep people small, naturally proportioned and architecturally credible.
+Style/medium: sophisticated contemporary architecture-magazine illustration, precise fine ink contours with soft opaque watercolor/gouache planes, restrained detail, considered perspective, subtle material textures. Elegant, calm, professional and approachable. Neither clip art, pictograms, stock corporate vector art, cartoon toy isometric blocks, nor photorealism.
+Palette: soft warm limestone and muted oak, charcoal fine lines, restrained cobalt-blue accents matching #3558a4, tiny antique-brass accents. The destination has a little more blue. No green recycling logos.
+Background: genuinely transparent, no paper rectangle, no backdrop scene, no drop-shadow card. Keep 4% clear margin around all objects, no cropping.
+Text: none, no letters, no words, no numbers, no logos or watermark. The website supplies the labels.
+Important: visual simplicity and spatial clarity are essential. One old building, five well-spaced objects, one future construction project with two architects; no other narrative scenes.
+
